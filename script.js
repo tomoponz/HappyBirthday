@@ -66,11 +66,6 @@ music.loop = true;
 music.preload = "auto";
 music.volume = 0.8;
 
-const startSound = new Audio("nc167325_ガシャット挿入音.wav");
-startSound.preload = "auto";
-startSound.volume = 0.85;
-let hasPlayedStartSound = false;
-
 function updateProgress() {
   progressLabel.textContent = `${watched.size} / ${messages.length} WATCHED`;
 
@@ -85,23 +80,6 @@ function playFinaleMusic() {
   if (result && typeof result.catch === "function") {
     result.catch(() => {
       musicButton.hidden = false;
-    });
-  }
-}
-
-function playStartSoundOnce() {
-  if (hasPlayedStartSound) {
-    return;
-  }
-
-  hasPlayedStartSound = true;
-  startSound.pause();
-  startSound.currentTime = 0;
-  const result = startSound.play();
-
-  if (result && typeof result.catch === "function") {
-    result.catch(() => {
-      // 音声が拒否されても、動画は通常どおり再生します。
     });
   }
 }
@@ -162,8 +140,6 @@ messages.forEach((message, index) => {
   });
 
   video.addEventListener("play", () => {
-    playStartSoundOnce();
-
     document.querySelectorAll(".message-video").forEach((otherVideo) => {
       if (otherVideo !== video) otherVideo.pause();
     });
@@ -202,9 +178,6 @@ musicButton.addEventListener("click", () => {
 restartButton.addEventListener("click", () => {
   music.pause();
   music.currentTime = 0;
-  startSound.pause();
-  startSound.currentTime = 0;
-  hasPlayedStartSound = false;
   musicButton.hidden = true;
   finale.hidden = true;
   watched.clear();
@@ -225,7 +198,6 @@ restartButton.addEventListener("click", () => {
 
 window.addEventListener("pagehide", () => {
   music.pause();
-  startSound.pause();
 });
 
 updateProgress();
