@@ -1,34 +1,34 @@
 /* ===========================================================
-   生誕記念特別中継 — 国際生誕記念機構
-   儀式的な公式中継サイトを模した外観。金＝機構の恒久的な identity、
-   --signal＝中継の進行に応じて steel → amber → brick と変化する状態色。
+   ケイスケ生誕祭 2026 — HAPPY BIRTHDAY SPECIAL
+   期間限定キャンペーンサイト風の、明るく上品な誕生日特設テーマ。
+   生成りの紙にシャンパンゴールドの罫線、差し色に淡いローズ。
    =========================================================== */
 
 :root {
-  color-scheme: dark;
+  color-scheme: light;
 
-  --bg-deep: #03050a;
-  --bg: #070b14;
-  --surface: #0c1220;
-  --surface-2: #111827;
+  --bg-page: #f3ecdd;
+  --bg: #fdfaf3;
+  --surface: #ffffff;
+  --surface-soft: #fbf6ea;
 
-  --text: #f4f6f9;
-  --text-2: #ccd4df;
-  --muted: #8b95a5;
-  --faint: #626d7d;
+  --text: #3a332a;
+  --text-2: #5d5546;
+  --muted: #8b8171;
+  --faint: #a89d88;
 
-  --gold: #c9a765;
-  --gold-bright: #edd7a1;
-  --gold-deep: #7d6531;
+  --gold: #a8843c;
+  --gold-deep: #7c5f1f;
+  --gold-pale: #d8c290;
 
-  --steel: #7ea3bf;
-  --amber: #d4a459;
-  --brick: #cf6a52;
+  --blush: #c96f8c;
+  --blush-soft: rgba(217, 139, 163, 0.16);
 
-  --line: rgba(201, 167, 101, 0.24);
-  --line-soft: rgba(255, 255, 255, 0.07);
+  --line: rgba(168, 132, 60, 0.38);
+  --line-soft: rgba(58, 51, 42, 0.12);
 
-  --shadow: 0 24px 80px rgba(0, 0, 0, 0.5);
+  --shadow: 0 24px 70px rgba(94, 74, 34, 0.14);
+  --shadow-card: 0 14px 40px rgba(94, 74, 34, 0.1);
 
   --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Kaku Gothic ProN",
     "Hiragino Sans", "Yu Gothic UI", "Yu Gothic", Meiryo, sans-serif;
@@ -48,7 +48,7 @@
 
 html {
   min-width: 320px;
-  background: var(--bg-deep);
+  background: var(--bg-page);
 }
 
 body {
@@ -58,8 +58,8 @@ body {
   margin: 0;
   overflow-x: hidden;
   background:
-    radial-gradient(circle at 50% -12%, rgba(70, 100, 128, 0.16), transparent 44%),
-    var(--bg-deep);
+    radial-gradient(circle at 50% -10%, rgba(214, 178, 106, 0.22), transparent 46%),
+    var(--bg-page);
   color: var(--text);
   font-family: inherit;
   -webkit-font-smoothing: antialiased;
@@ -76,7 +76,7 @@ button {
 }
 
 button:focus-visible {
-  outline: 2px solid var(--gold-bright);
+  outline: 2px solid var(--gold-deep);
   outline-offset: 4px;
 }
 
@@ -87,7 +87,7 @@ button:focus-visible {
 }
 
 [tabindex="-1"]:focus-visible {
-  outline: 2px solid var(--gold-bright);
+  outline: 2px solid var(--gold-deep);
   outline-offset: 4px;
 }
 
@@ -100,26 +100,9 @@ button:focus-visible {
   font-variant-numeric: tabular-nums;
 }
 
-/* --- 全面の微細なフィルムグレイン（データURIのみ・外部素材なし） --- */
-.grain {
-  position: fixed;
-  z-index: 40;
-  inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
-  background-size: 160px 160px;
-  opacity: 0.05;
-  mix-blend-mode: overlay;
-  pointer-events: none;
-}
-
 /* ===================== 外枠 ===================== */
 
 .app-shell {
-  /* 中継の状態色。data-phase で段階的に切り替える。 */
-  --signal: var(--steel);
-  --signal-soft: rgba(126, 163, 191, 0.2);
-  --tension: 0;
-
   position: relative;
   width: 100%;
   max-width: 720px;
@@ -129,43 +112,17 @@ button:focus-visible {
   overflow: hidden;
   isolation: isolate;
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent 22%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.65), transparent 26%),
     var(--bg);
   box-shadow: var(--shadow);
-}
-
-.app-shell[data-phase="caution"] {
-  --signal: var(--amber);
-  --signal-soft: rgba(212, 164, 89, 0.22);
-  --tension: 0.5;
-}
-
-.app-shell[data-phase="alert"] {
-  --signal: var(--brick);
-  --signal-soft: rgba(207, 106, 82, 0.24);
-  --tension: 1;
 }
 
 .app-shell::before {
   position: absolute;
   z-index: -1;
   inset: 0;
-  border-inline: 1px solid rgba(255, 255, 255, 0.035);
+  border-inline: 1px solid rgba(168, 132, 60, 0.18);
   content: "";
-  pointer-events: none;
-}
-
-/* 進行に合わせて濃くなる走査線と周辺減光 */
-.app-shell::after {
-  position: absolute;
-  z-index: 30;
-  inset: 0;
-  background:
-    repeating-linear-gradient(180deg, rgba(0, 0, 0, 0.5) 0 1px, transparent 1px 5px),
-    radial-gradient(circle at 50% 50%, transparent 52%, rgba(0, 0, 0, 0.55));
-  opacity: calc(var(--tension) * 0.28);
-  content: "";
-  transition: opacity 900ms ease;
   pointer-events: none;
 }
 
@@ -176,21 +133,20 @@ button:focus-visible {
   height: 300px;
   border-radius: 50%;
   filter: blur(84px);
-  opacity: 0.13;
-  transition: background-color 900ms ease;
+  opacity: 0.11;
   pointer-events: none;
 }
 
 .ambient-top {
-  top: -180px;
-  right: -90px;
-  background: var(--signal);
+  top: -200px;
+  right: -110px;
+  background: var(--blush);
 }
 
 .ambient-bottom {
   bottom: -210px;
   left: -100px;
-  background: var(--gold);
+  background: var(--gold-pale);
 }
 
 /* ===================== 画面共通 ===================== */
@@ -221,7 +177,7 @@ button:focus-visible {
   margin: 0;
   color: var(--gold);
   font-size: 0.65rem;
-  font-weight: 650;
+  font-weight: 700;
   letter-spacing: 0.2em;
   line-height: 1.7;
 }
@@ -263,7 +219,7 @@ button:focus-visible {
   align-items: center;
   justify-content: center;
   border: 1px solid transparent;
-  border-radius: 2px;
+  border-radius: 999px;
   cursor: pointer;
   font-size: 0.92rem;
   font-weight: 650;
@@ -271,7 +227,7 @@ button:focus-visible {
   line-height: 1.5;
   text-align: center;
   transition: transform 180ms ease, background-color 240ms ease, border-color 240ms ease,
-    color 240ms ease, opacity 180ms ease;
+    color 240ms ease, box-shadow 240ms ease, opacity 180ms ease;
   touch-action: manipulation;
 }
 
@@ -285,25 +241,30 @@ button:focus-visible {
 }
 
 .button-primary {
-  position: relative;
-  border-color: var(--gold);
-  background: linear-gradient(180deg, var(--gold-bright), #dcc086);
-  color: #14110a;
-  box-shadow: 0 10px 34px rgba(201, 167, 101, 0.14);
+  border-color: #8a6c2a;
+  background: linear-gradient(180deg, #bb9448, #9c7a33);
+  color: #fffdf4;
+  box-shadow:
+    0 12px 30px rgba(156, 122, 51, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.35);
 }
 
 .button-primary:not(:disabled):hover {
-  background: linear-gradient(180deg, #fbecc4, var(--gold-bright));
+  background: linear-gradient(180deg, #c9a258, #ab8940);
+  box-shadow:
+    0 14px 34px rgba(156, 122, 51, 0.34),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
 }
 
 .button-secondary {
-  border-color: rgba(201, 167, 101, 0.55);
-  background: rgba(201, 167, 101, 0.07);
-  color: var(--gold-bright);
+  border-color: rgba(168, 132, 60, 0.55);
+  background: rgba(255, 255, 255, 0.75);
+  color: var(--gold-deep);
 }
 
 .button-secondary:not(:disabled):hover {
-  background: rgba(201, 167, 101, 0.13);
+  background: #ffffff;
+  border-color: var(--gold);
 }
 
 .button-text {
@@ -368,10 +329,10 @@ button:focus-visible {
 }
 
 .org-text b {
-  color: var(--gold-bright);
+  color: var(--gold-deep);
   font-size: 0.72rem;
-  font-weight: 650;
-  letter-spacing: 0.22em;
+  font-weight: 700;
+  letter-spacing: 0.18em;
   line-height: 1;
 }
 
@@ -422,13 +383,14 @@ button:focus-visible {
 
 .hero-title {
   margin: 12px 0 0;
+  color: var(--gold-deep);
   font-family: var(--font-serif);
-  font-size: clamp(2rem, 9.4vw, 3.3rem);
+  font-size: clamp(2.4rem, 11.5vw, 4rem);
   font-weight: 500;
-  letter-spacing: 0.2em;
-  line-height: 1.38;
-  text-indent: 0.2em;
-  text-shadow: 0 8px 40px rgba(201, 167, 101, 0.14);
+  letter-spacing: 0.12em;
+  line-height: 1.16;
+  text-indent: 0.12em;
+  text-shadow: 0 6px 30px rgba(168, 132, 60, 0.25);
   animation: hero-in 1100ms cubic-bezier(0.16, 0.9, 0.24, 1) 340ms both;
 }
 
@@ -441,16 +403,8 @@ button:focus-visible {
   font-family: var(--font-serif);
   font-size: clamp(1.4rem, 6.4vw, 2.1rem);
   font-weight: 500;
-  letter-spacing: 0.12em;
-  animation: fade-up 800ms ease 800ms both;
-}
-
-.recipient em {
-  margin-left: 0.5em;
-  color: var(--gold);
-  font-size: 0.56em;
-  font-style: normal;
   letter-spacing: 0.1em;
+  animation: fade-up 800ms ease 800ms both;
 }
 
 .lead {
@@ -464,9 +418,11 @@ button:focus-visible {
 .edition-card {
   width: 100%;
   margin: 0;
-  padding: 4px 14px;
-  border-block: 1px solid var(--line);
-  background: linear-gradient(90deg, transparent, rgba(201, 167, 101, 0.04), transparent);
+  padding: 6px 18px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--surface);
+  box-shadow: var(--shadow-card);
   animation: fade-up 800ms ease 1040ms both;
 }
 
@@ -475,8 +431,8 @@ button:focus-visible {
   align-items: baseline;
   justify-content: space-between;
   gap: 16px;
-  padding: 9px 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 11px 0;
+  border-bottom: 1px solid var(--line-soft);
   text-align: left;
 }
 
@@ -486,40 +442,23 @@ button:focus-visible {
 
 .edition-card dt {
   flex: 0 0 auto;
-  color: var(--faint);
-  font-size: 0.63rem;
-  font-weight: 600;
+  color: var(--muted);
+  font-size: 0.66rem;
+  font-weight: 650;
   letter-spacing: 0.12em;
 }
 
 .edition-card dd {
   margin: 0;
   color: var(--text-2);
-  font-size: 0.78rem;
+  font-size: 0.8rem;
   letter-spacing: 0.05em;
   text-align: right;
 }
 
-.edition-card dd.mono {
-  color: var(--gold-bright);
-  font-size: 0.74rem;
-  letter-spacing: 0.1em;
-}
-
-.edition-card dd.verified {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  color: var(--gold-bright);
-}
-
-.edition-card dd.verified::before {
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: var(--gold);
-  box-shadow: 0 0 8px var(--gold);
-  content: "";
+.edition-card dd.star {
+  color: var(--gold-deep);
+  font-weight: 650;
 }
 
 .opening-actions {
@@ -536,14 +475,14 @@ button:focus-visible {
   line-height: 1.6;
 }
 
-/* ===================== 回線接続画面 ===================== */
+/* ===================== 準備中画面 ===================== */
 
 .connection-mark {
   display: grid;
   width: 74px;
   height: 74px;
   margin-bottom: 30px;
-  border: 1px solid var(--signal-soft);
+  border: 1px solid rgba(168, 132, 60, 0.35);
   border-radius: 50%;
   place-items: center;
   animation: soft-pulse 2s ease-in-out infinite;
@@ -560,27 +499,27 @@ button:focus-visible {
 .connection-mark::before {
   width: 50px;
   height: 50px;
-  border: 1px solid var(--signal-soft);
+  border: 1px solid rgba(168, 132, 60, 0.3);
 }
 
 .connection-mark::after {
   width: 7px;
   height: 7px;
-  background: var(--signal);
-  box-shadow: 0 0 18px var(--signal);
+  background: var(--gold);
+  box-shadow: 0 0 14px rgba(168, 132, 60, 0.7);
 }
 
 .connection-mark span {
   width: 62px;
   height: 62px;
-  border-top: 1px solid var(--gold);
+  border-top: 1px solid var(--gold-deep);
   animation: spin 2.2s linear infinite;
 }
 
 .sequence-message {
   min-height: 3.4em;
   margin: 22px 0;
-  color: var(--text);
+  color: var(--text-2);
   font-size: clamp(0.9rem, 3.9vw, 1.06rem);
   letter-spacing: 0.04em;
   line-height: 1.8;
@@ -596,8 +535,8 @@ button:focus-visible {
   display: block;
   width: 24px;
   height: 1px;
-  background: var(--signal);
-  opacity: 0.3;
+  background: var(--gold);
+  opacity: 0.35;
   animation: signal 1.4s ease-in-out infinite;
 }
 
@@ -609,7 +548,7 @@ button:focus-visible {
   animation-delay: 360ms;
 }
 
-/* ===================== 中継画面 ===================== */
+/* ===================== メッセージ上映画面 ===================== */
 
 .screen-player {
   display: flex;
@@ -634,15 +573,14 @@ button:focus-visible {
   flex: 0 0 auto;
   align-items: center;
   gap: 6px;
-  padding: 4px 9px;
-  border: 1px solid var(--signal-soft);
-  border-radius: 2px;
-  background: color-mix(in srgb, var(--signal) 12%, transparent);
-  color: var(--signal);
-  font-size: 0.6rem;
+  padding: 4px 11px;
+  border: 1px solid rgba(201, 111, 140, 0.45);
+  border-radius: 999px;
+  background: var(--blush-soft);
+  color: var(--blush);
+  font-size: 0.62rem;
   font-weight: 700;
-  letter-spacing: 0.14em;
-  transition: color 700ms ease, border-color 700ms ease, background-color 700ms ease;
+  letter-spacing: 0.12em;
 }
 
 .live-badge i {
@@ -663,7 +601,7 @@ button:focus-visible {
 
 .message-counter {
   margin: 0 0 0 auto;
-  color: var(--gold-bright);
+  color: var(--gold-deep);
   font-family: var(--font-mono);
   font-size: 0.86rem;
   font-variant-numeric: tabular-nums;
@@ -684,7 +622,7 @@ button:focus-visible {
   letter-spacing: 0.1em;
 }
 
-/* --- 映像枠：中継の主役 --- */
+/* --- 映像枠：メッセージの主役 --- */
 
 .media-frame {
   position: relative;
@@ -693,47 +631,22 @@ button:focus-visible {
   height: clamp(250px, 54dvh, 540px);
   min-height: 0;
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.11);
-  background: #000;
-  box-shadow: 0 18px 60px rgba(0, 0, 0, 0.42);
+  border: 1px solid rgba(168, 132, 60, 0.45);
+  border-radius: 14px;
+  background: #17140f;
+  box-shadow: 0 18px 48px rgba(94, 74, 34, 0.22);
   place-items: center;
   transition: height 560ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* 照合が始まったら映像枠を縮め、照合結果を画面内へ引き上げる。 */
+/* メッセージカードが出たら映像枠を縮め、カードを画面内へ引き上げる。 */
 .screen-player:has(#sender-check:not([hidden])) .media-frame,
 .screen-player:has(#sender-card:not([hidden])) .media-frame {
   height: clamp(160px, 27dvh, 280px);
 }
 
-.media-frame::before,
-.media-frame::after {
-  position: absolute;
-  z-index: 2;
-  width: 14px;
-  height: 14px;
-  border-color: var(--gold);
-  opacity: 0.5;
-  content: "";
-  pointer-events: none;
-}
-
-.media-frame::before {
-  top: 6px;
-  left: 6px;
-  border-top: 1px solid;
-  border-left: 1px solid;
-}
-
-.media-frame::after {
-  right: 6px;
-  bottom: 6px;
-  border-right: 1px solid;
-  border-bottom: 1px solid;
-}
-
 .media-frame:focus-within {
-  outline: 2px solid var(--gold-bright);
+  outline: 2px solid var(--gold-deep);
   outline-offset: 2px;
 }
 
@@ -763,24 +676,14 @@ button:focus-visible {
   align-items: center;
   justify-content: center;
   background:
-    linear-gradient(180deg, var(--signal-soft), transparent 46%),
-    #05070b;
+    radial-gradient(circle at 50% 0%, rgba(214, 178, 106, 0.18), transparent 52%),
+    var(--surface-soft);
   text-align: center;
-}
-
-.placeholder-scan {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, transparent 48%, var(--signal-soft) 50%, transparent 52%);
-  background-size: 100% 70px;
-  opacity: 0.5;
-  animation: scan 4s linear infinite;
-  pointer-events: none;
 }
 
 .placeholder-title {
   margin: 0 0 22px;
-  color: var(--gold);
+  color: var(--gold-deep);
   font-family: var(--font-serif);
   font-size: clamp(1.1rem, 4.8vw, 1.5rem);
   letter-spacing: 0.14em;
@@ -807,13 +710,13 @@ button:focus-visible {
 
 .playback-guidance {
   margin: -8px 0 0;
-  color: var(--signal);
+  color: var(--blush);
   font-size: 0.71rem;
   line-height: 1.6;
   text-align: center;
 }
 
-/* --- 照合中 --- */
+/* --- カード準備中 --- */
 
 .sender-check {
   display: flex;
@@ -821,7 +724,7 @@ button:focus-visible {
   align-items: center;
   justify-content: center;
   gap: 12px;
-  border-block: 1px solid var(--signal-soft);
+  border-block: 1px solid var(--line-soft);
   color: var(--text-2);
   text-align: center;
 }
@@ -835,23 +738,22 @@ button:focus-visible {
 .mini-spinner {
   width: 17px;
   height: 17px;
-  border: 1px solid var(--signal-soft);
-  border-top-color: var(--signal);
+  border: 1px solid rgba(168, 132, 60, 0.3);
+  border-top-color: var(--gold);
   border-radius: 50%;
   animation: spin 1s linear infinite;
 }
 
-/* --- 身元照合結果（公文書風カード） --- */
+/* --- メッセージカード（招待状風） --- */
 
 .sender-card {
   position: relative;
   padding: clamp(22px, 5.6vw, 32px);
   overflow: hidden;
   border: 1px solid var(--line);
-  background:
-    linear-gradient(145deg, rgba(201, 167, 101, 0.05), transparent 46%),
-    var(--surface);
-  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.3);
+  border-radius: 18px;
+  background: var(--surface);
+  box-shadow: var(--shadow-card);
 }
 
 .sender-card::before {
@@ -859,8 +761,8 @@ button:focus-visible {
   top: 0;
   left: 0;
   width: 100%;
-  height: 2px;
-  background: linear-gradient(90deg, var(--gold-deep), var(--gold), var(--gold-deep));
+  height: 3px;
+  background: linear-gradient(90deg, var(--gold-pale), var(--gold), var(--blush));
   content: "";
 }
 
@@ -890,9 +792,9 @@ button:focus-visible {
 }
 
 .sender-card dt {
-  color: var(--faint);
+  color: var(--muted);
   font-size: 0.65rem;
-  font-weight: 600;
+  font-weight: 650;
   letter-spacing: 0.12em;
 }
 
@@ -904,11 +806,8 @@ button:focus-visible {
 }
 
 .sender-card dd#sender-status {
-  color: var(--signal);
-  font-family: var(--font-mono);
-  font-size: clamp(0.82rem, 3.5vw, 0.92rem);
-  letter-spacing: 0.04em;
-  transition: color 700ms ease;
+  color: var(--text-2);
+  font-style: normal;
 }
 
 .card-foot {
@@ -927,52 +826,13 @@ button:focus-visible {
   margin-top: 22px;
 }
 
-/* 「該当者なし」の押印 */
-.seal {
-  position: absolute;
-  top: clamp(16px, 4vw, 24px);
-  right: clamp(14px, 4vw, 22px);
-  display: grid;
-  width: clamp(66px, 17vw, 82px);
-  height: clamp(66px, 17vw, 82px);
-  border: 2px solid currentColor;
-  border-radius: 50%;
-  color: var(--signal);
-  opacity: 0.72;
-  place-items: center;
-  text-align: center;
-  transition: color 700ms ease;
-  animation: seal-stamp 460ms cubic-bezier(0.2, 1.4, 0.4, 1) 420ms both;
-  pointer-events: none;
-}
-
-.seal::before {
-  position: absolute;
-  inset: 3px;
-  border: 1px solid currentColor;
-  border-radius: 50%;
-  opacity: 0.6;
-  content: "";
-}
-
-.seal span {
-  font-family: var(--font-serif);
-  font-size: clamp(0.72rem, 2.9vw, 0.86rem);
-  font-weight: 700;
-  letter-spacing: 0.09em;
-  line-height: 1.35;
-}
-
-/* --- 計測値ストリップ --- */
+/* --- 進捗ストリップ --- */
 
 .progress-status {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
   margin-top: auto;
-  overflow: hidden;
-  border: 1px solid var(--line-soft);
-  background: var(--line-soft);
 }
 
 .progress-status p {
@@ -980,37 +840,35 @@ button:focus-visible {
   min-width: 0;
   min-height: 62px;
   margin: 0;
-  padding: 10px 6px;
+  padding: 10px 8px;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 5px;
-  background: #080c14;
+  border: 1px solid var(--line-soft);
+  border-radius: 12px;
+  background: var(--surface);
   text-align: center;
 }
 
 .progress-status span {
-  color: var(--faint);
-  font-size: clamp(0.54rem, 2.4vw, 0.64rem);
+  color: var(--muted);
+  font-size: clamp(0.56rem, 2.5vw, 0.66rem);
   line-height: 1.4;
 }
 
 .progress-status strong {
-  color: var(--text-2);
+  color: var(--gold-deep);
   font-family: var(--font-mono);
-  font-size: clamp(0.72rem, 2.9vw, 0.82rem);
+  font-size: clamp(0.76rem, 3.1vw, 0.88rem);
   font-weight: 600;
 }
 
-/* ===================== 回線切替画面 ===================== */
-
-.transition-screen {
-  background: #020305;
-}
+/* ===================== 幕間画面 ===================== */
 
 .transition-copy {
   width: 100%;
-  min-height: 7em;
+  min-height: 5em;
   margin: 24px 0 34px;
   color: var(--text-2);
   font-size: clamp(0.92rem, 4vw, 1.08rem);
@@ -1023,31 +881,23 @@ button:focus-visible {
   animation: fade-in 600ms ease both;
 }
 
-.transition-copy p:nth-child(2) {
-  animation-delay: 480ms;
-}
-
-.transition-copy .warning-copy {
-  color: var(--brick);
-  font-weight: 600;
-}
-
 .transfer-track {
   width: min(280px, 80%);
-  height: 1px;
+  height: 2px;
   overflow: hidden;
-  background: rgba(255, 255, 255, 0.1);
+  border-radius: 999px;
+  background: rgba(168, 132, 60, 0.18);
 }
 
 .transfer-track span {
   display: block;
   width: 40%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, var(--signal), transparent);
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
   animation: transfer 1.25s ease-in-out infinite;
 }
 
-/* ===================== 集計結果画面 ===================== */
+/* ===================== 全通お届け完了画面 ===================== */
 
 .results-screen h2 {
   margin: 20px 0 0;
@@ -1060,19 +910,23 @@ button:focus-visible {
 
 .result-details {
   width: 100%;
-  margin-top: clamp(34px, 7dvh, 64px);
+  margin-top: clamp(30px, 6dvh, 56px);
 }
 
 .result-grid {
-  margin-bottom: 26px;
-  border-block: 1px solid var(--line);
+  margin-bottom: 22px;
+  padding: 6px 18px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--surface);
+  box-shadow: var(--shadow-card);
 }
 
 .result-grid p {
   display: flex;
   min-width: 0;
   margin: 0;
-  padding: 16px 2px;
+  padding: 15px 0;
   align-items: center;
   justify-content: space-between;
   gap: 18px;
@@ -1092,15 +946,21 @@ button:focus-visible {
 
 .result-grid strong {
   flex: 0 0 auto;
-  color: var(--gold-bright);
+  color: var(--gold-deep);
   font-family: var(--font-serif);
-  font-size: 1.2rem;
+  font-size: 1.15rem;
   font-weight: 500;
 }
 
-.result-grid p:not(:first-child) strong {
-  color: var(--signal);
-  transition: color 700ms ease;
+.result-grid p:last-child strong {
+  color: var(--blush);
+}
+
+.result-note {
+  margin: 0 0 22px;
+  color: var(--text-2);
+  font-size: clamp(0.84rem, 3.6vw, 0.95rem);
+  line-height: 1.9;
 }
 
 #result-wait {
@@ -1110,57 +970,22 @@ button:focus-visible {
   letter-spacing: 0.06em;
 }
 
-/* ===================== 知人検索画面 ===================== */
+/* ===================== 最後のメッセージ準備画面 ===================== */
 
-.radar {
-  position: relative;
-  width: 100px;
-  height: 100px;
-  margin-bottom: 34px;
-  overflow: hidden;
-  border: 1px solid var(--signal-soft);
-  border-radius: 50%;
-  background:
-    linear-gradient(var(--signal-soft) 1px, transparent 1px),
-    linear-gradient(90deg, var(--signal-soft) 1px, transparent 1px);
-  background-size: 50% 50%;
+.envelope-mark {
+  width: clamp(84px, 24vw, 108px);
+  height: auto;
+  margin-bottom: 30px;
+  color: var(--gold);
+  animation: soft-pulse 2s ease-in-out infinite;
 }
 
-.radar::before,
-.radar::after {
-  position: absolute;
-  content: "";
+.envelope-mark text {
+  font-family: var(--font-serif);
+  font-size: 10px;
 }
 
-.radar::before {
-  inset: 22px;
-  border: 1px solid var(--signal-soft);
-  border-radius: 50%;
-}
-
-.radar::after {
-  top: 50%;
-  left: 50%;
-  width: 50%;
-  height: 1px;
-  background: linear-gradient(90deg, var(--signal), transparent);
-  transform-origin: left center;
-  animation: radar-sweep 2.2s linear infinite;
-}
-
-.radar span {
-  position: absolute;
-  top: 29%;
-  left: 63%;
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: var(--gold);
-  box-shadow: 0 0 10px var(--gold);
-  animation: soft-pulse 1.4s ease-in-out infinite;
-}
-
-/* ===================== 最終画面 ===================== */
+/* ===================== 最終メッセージ画面 ===================== */
 
 .final-screen {
   display: flex;
@@ -1180,7 +1005,6 @@ button:focus-visible {
 .final-header {
   padding-bottom: 14px;
   border-bottom: 1px solid var(--line);
-  transition: border-color 900ms ease;
 }
 
 .final-header h2 {
@@ -1189,7 +1013,6 @@ button:focus-visible {
   font-size: clamp(1.5rem, 6.8vw, 2.2rem);
   font-weight: 400;
   letter-spacing: 0.12em;
-  transition: color 900ms ease;
 }
 
 .final-media-frame {
@@ -1200,7 +1023,6 @@ button:focus-visible {
   padding: clamp(24px, 6.4vw, 36px) 4px;
   border-block: 1px solid var(--line);
   text-align: center;
-  transition: border-color 900ms ease;
 }
 
 .final-fallback p {
@@ -1208,12 +1030,11 @@ button:focus-visible {
   color: var(--text);
   font-size: clamp(0.94rem, 4vw, 1.06rem);
   line-height: 2;
-  transition: color 900ms ease;
 }
 
 .final-fallback p:last-child {
   margin-bottom: 0;
-  color: var(--gold-bright);
+  color: var(--gold-deep);
   font-weight: 600;
 }
 
@@ -1225,83 +1046,22 @@ button:focus-visible {
 
 .birthday-ending > p:first-of-type {
   margin: 0;
+  color: var(--gold-deep);
   font-family: var(--font-serif);
   font-size: clamp(1.75rem, 8.6vw, 2.9rem);
   font-weight: 500;
   letter-spacing: 0.09em;
-  transition: color 900ms ease;
+  text-shadow: 0 6px 30px rgba(168, 132, 60, 0.3);
 }
 
 .birthday-ending .ending-name {
   margin: 9px 0 24px;
-  color: var(--gold);
+  color: var(--text-2);
   font-size: 0.86rem;
   letter-spacing: 0.09em;
-  transition: color 900ms ease;
 }
 
-/* --- 夜明け：最終画面だけ暖色の朝へ反転する --- */
-
-/* 暖色の背景は transition で出す。アニメーションが走らない環境でも
-   確定状態が opacity:1 になり、暗い背景に暗い文字が残らないようにする。 */
-.dawn {
-  position: absolute;
-  z-index: -1;
-  inset: 0;
-  opacity: 0;
-  background:
-    radial-gradient(circle at 50% 24%, #ffe6ab, transparent 58%),
-    linear-gradient(180deg, #fff7e6 0%, #fdefd4 52%, #f8e3bd 100%);
-  transition: opacity 1200ms ease;
-  pointer-events: none;
-}
-
-.final-screen:has(#birthday-ending:not([hidden])) .dawn {
-  opacity: 1;
-}
-
-.final-screen:has(#birthday-ending:not([hidden])) {
-  --line: rgba(150, 112, 42, 0.32);
-  --line-soft: rgba(90, 68, 30, 0.16);
-  --gold: #9c7526;
-  --gold-bright: #6f4f14;
-}
-
-.final-screen:has(#birthday-ending:not([hidden])) .final-header h2,
-.final-screen:has(#birthday-ending:not([hidden])) .final-fallback p,
-.final-screen:has(#birthday-ending:not([hidden])) .birthday-ending > p:first-of-type {
-  color: #3d2f14;
-}
-
-.final-screen:has(#birthday-ending:not([hidden])) .birthday-ending > p:first-of-type {
-  text-shadow: 0 6px 30px rgba(214, 160, 54, 0.4);
-}
-
-.final-screen:has(#birthday-ending:not([hidden])) .final-fallback p:last-child,
-.final-screen:has(#birthday-ending:not([hidden])) .birthday-ending .ending-name {
-  color: #8a6115;
-}
-
-.final-screen:has(#birthday-ending:not([hidden])) .button-secondary {
-  border-color: rgba(126, 94, 30, 0.5);
-  background: rgba(255, 255, 255, 0.42);
-  color: #6b4d14;
-}
-
-.final-screen:has(#birthday-ending:not([hidden])) .button-secondary:not(:disabled):hover {
-  background: rgba(255, 255, 255, 0.68);
-}
-
-.final-screen:has(#birthday-ending:not([hidden])) .button:focus-visible {
-  outline-color: #8a6115;
-}
-
-/* 最終画面が暖色に反転している間は、走査線と減光を消す。 */
-.app-shell:has(#birthday-ending:not([hidden])) {
-  --tension: 0;
-}
-
-/* --- 紙吹雪 --- */
+/* --- 紙吹雪（エンディングだけ） --- */
 
 .confetti {
   position: absolute;
@@ -1309,7 +1069,7 @@ button:focus-visible {
   inset: 0;
   overflow: hidden;
   opacity: 0;
-  transition: opacity 700ms ease 500ms;
+  transition: opacity 700ms ease 300ms;
   pointer-events: none;
 }
 
@@ -1332,19 +1092,23 @@ button:focus-visible {
   animation-iteration-count: infinite;
 }
 
-.confetti i:nth-child(3n + 1) {
-  background: #e8b64d;
+.confetti i:nth-child(4n + 1) {
+  background: #e4b64e;
 }
 
-.confetti i:nth-child(3n + 2) {
-  background: #f0a7b8;
+.confetti i:nth-child(4n + 2) {
+  background: #e79ab5;
 }
 
-.confetti i:nth-child(3n) {
-  background: #8fc4dd;
+.confetti i:nth-child(4n + 3) {
+  background: #8fc6de;
 }
 
 .confetti i:nth-child(4n) {
+  background: #b9a2df;
+}
+
+.confetti i:nth-child(5n) {
   width: 7px;
   height: 7px;
   border-radius: 50%;
@@ -1436,22 +1200,11 @@ noscript {
 @keyframes hero-in {
   from {
     opacity: 0;
-    letter-spacing: 0.5em;
+    letter-spacing: 0.34em;
   }
   to {
     opacity: 1;
-    letter-spacing: 0.2em;
-  }
-}
-
-@keyframes seal-stamp {
-  from {
-    opacity: 0;
-    transform: scale(1.9) rotate(-22deg);
-  }
-  to {
-    opacity: 0.72;
-    transform: scale(1) rotate(-9deg);
+    letter-spacing: 0.12em;
   }
 }
 
@@ -1501,7 +1254,7 @@ noscript {
 @keyframes soft-pulse {
   0%,
   100% {
-    opacity: 0.55;
+    opacity: 0.6;
   }
   50% {
     opacity: 1;
@@ -1516,16 +1269,7 @@ noscript {
   }
   50% {
     transform: scaleX(1);
-    opacity: 0.65;
-  }
-}
-
-@keyframes scan {
-  from {
-    background-position: 0 -70px;
-  }
-  to {
-    background-position: 0 70px;
+    opacity: 0.7;
   }
 }
 
@@ -1535,12 +1279,6 @@ noscript {
   }
   to {
     transform: translateX(350%);
-  }
-}
-
-@keyframes radar-sweep {
-  to {
-    transform: rotate(360deg);
   }
 }
 
@@ -1557,12 +1295,12 @@ noscript {
   }
 
   .hero-title {
-    letter-spacing: 0.14em;
-    text-indent: 0.14em;
+    letter-spacing: 0.08em;
+    text-indent: 0.08em;
   }
 
   .org-text b {
-    letter-spacing: 0.15em;
+    letter-spacing: 0.12em;
   }
 
   .media-frame {
@@ -1578,7 +1316,8 @@ noscript {
   .app-shell {
     min-height: calc(100dvh - 32px);
     margin-block: 16px;
-    border: 1px solid rgba(255, 255, 255, 0.045);
+    border: 1px solid rgba(168, 132, 60, 0.25);
+    border-radius: 6px;
   }
 
   .screen {
@@ -1595,7 +1334,7 @@ noscript {
   }
 
   .hero-title {
-    font-size: clamp(1.75rem, 7.6vw, 2.4rem);
+    font-size: clamp(2rem, 9vw, 2.8rem);
   }
 
   .lead {

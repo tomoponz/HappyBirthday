@@ -3,17 +3,15 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-    <meta name="theme-color" content="#070b14">
-    <meta name="description" content="国際生誕記念機構がお届けする、生誕記念特別中継の公式ページです。">
-    <title>生誕記念特別中継｜国際生誕記念機構</title>
+    <meta name="theme-color" content="#fdfaf3">
+    <meta name="description" content="ケイスケさんの誕生日を祝う、期間限定のお祝いメッセージ特設サイトです。">
+    <title>ケイスケ生誕祭 2026｜HAPPY BIRTHDAY SPECIAL</title>
     <link rel="icon" href="data:,">
     <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
   </head>
   <body>
-    <div class="grain" aria-hidden="true"></div>
-
-    <main id="app" class="app-shell" data-phase="calm">
+    <main id="app" class="app-shell">
       <div class="ambient ambient-top" aria-hidden="true"></div>
       <div class="ambient ambient-bottom" aria-hidden="true"></div>
 
@@ -22,13 +20,13 @@
         <div class="org-bar">
           <span class="org-mark" aria-hidden="true"></span>
           <span class="org-text">
-            <b>国際生誕記念機構</b>
-            <i>INTERNATIONAL BIRTH COMMEMORATION ORGANIZATION</i>
+            <b>ケイスケ生誕祭 実行委員会</b>
+            <i>KEISUKE BIRTHDAY CELEBRATION 2026</i>
           </span>
         </div>
 
         <div class="opening-copy">
-          <svg class="crest" viewBox="0 0 200 200" role="img" aria-label="国際生誕記念機構 記章">
+          <svg class="crest" viewBox="0 0 200 200" role="img" aria-label="ケイスケ生誕祭 記章">
             <defs>
               <path id="crest-arc-top" d="M 100,100 m -76,0 a 76,76 0 0 1 152,0"></path>
               <path id="crest-arc-bottom" d="M 100,100 m -84,0 a 84,84 0 0 0 168,0"></path>
@@ -45,7 +43,7 @@
                 <textPath href="#crest-arc-top" startOffset="50%" text-anchor="middle">HAPPY BIRTHDAY</textPath>
               </text>
               <text class="crest-arc">
-                <textPath href="#crest-arc-bottom" startOffset="50%" text-anchor="middle">COMMEMORATIVE BROADCAST</textPath>
+                <textPath href="#crest-arc-bottom" startOffset="50%" text-anchor="middle">BIRTHDAY CELEBRATION</textPath>
               </text>
             </g>
 
@@ -78,52 +76,52 @@
             <text class="crest-year" x="100" y="142" text-anchor="middle" fill="currentColor">2026</text>
           </svg>
 
-          <p class="eyebrow">令和八年度 認定行事 第一号</p>
-          <h1 class="hero-title">生誕記念<br>特別中継</h1>
+          <p class="eyebrow">HAPPY BIRTHDAY SPECIAL</p>
+          <h1 class="hero-title">HAPPY<br>BIRTHDAY</h1>
 
           <div class="ornament" aria-hidden="true"><span></span><i></i><span></span></div>
 
-          <p class="recipient"><span data-birthday-person></span><em>氏</em></p>
+          <p class="recipient"><span data-birthday-person></span>さんへ</p>
           <p class="lead">
-            世界各地より寄せられた祝辞を、<br>
-            本機構の照合を経て順次中継いたします。
+            今日は<span data-birthday-person></span>さんの誕生日。<br>
+            各地からお祝いメッセージが届きました。
           </p>
         </div>
 
         <dl class="edition-card">
-          <div><dt>中継区分</dt><dd>全10中継 ／ 祝辞者 27名</dd></div>
-          <div><dt>記録番号</dt><dd class="mono">IBC-2026-K27</dd></div>
-          <div><dt>照合状態</dt><dd class="verified">認証済</dd></div>
+          <div><dt>お祝いメッセージ</dt><dd>全10通 ／ 総勢27名</dd></div>
+          <div><dt>本日の主役</dt><dd class="star"><span data-birthday-person></span>さん</dd></div>
+          <div><dt>公開</dt><dd>期間限定</dd></div>
         </dl>
 
         <div class="opening-actions">
           <button id="start-button" class="button button-primary" type="button">
-            中継を開始する
+            お祝いメッセージを見る
           </button>
-          <p class="sound-note">イヤホンまたは音声をオンにしてご覧ください</p>
+          <p class="sound-note">音声をオンにしてご覧ください（BGMが流れます）</p>
         </div>
       </section>
 
-      <!-- ======================= 回線接続 ======================= -->
+      <!-- ======================= 準備中 ======================= -->
       <section id="screen-connecting" class="screen screen-centered" data-screen="connecting" hidden>
         <div class="connection-mark" aria-hidden="true"><span></span></div>
-        <p class="eyebrow">SECURE BROADCAST UPLINK</p>
+        <p class="eyebrow">BIRTHDAY MESSAGES</p>
         <p id="connection-message" class="sequence-message loading-blink" role="status" aria-live="polite">
-          中継回線を確立しています……
+          会場の準備をしています……
         </p>
         <div class="signal-lines" aria-hidden="true"><i></i><i></i><i></i></div>
       </section>
 
-      <!-- ======================= 祝辞中継 ======================= -->
+      <!-- ======================= メッセージ上映 ======================= -->
       <section id="screen-player" class="screen screen-player" data-screen="player" hidden>
         <header class="player-header">
           <div class="broadcast-bar">
-            <span class="live-badge"><i aria-hidden="true"></i>生中継</span>
-            <span class="channel-tag mono" aria-hidden="true">IBCO</span>
+            <span class="live-badge"><i aria-hidden="true"></i>お祝い上映中</span>
+            <span class="channel-tag mono" aria-hidden="true">2026</span>
             <p id="message-counter" class="message-counter" aria-label="1件目、全10件">01 / 10</p>
           </div>
           <div class="title-row">
-            <p class="eyebrow">祝辞</p>
+            <p class="eyebrow">お祝いメッセージ</p>
             <h2 id="message-title" class="message-title" tabindex="-1">MESSAGE 01</h2>
           </div>
         </header>
@@ -135,17 +133,16 @@
             controls
             playsinline
             preload="metadata"
-            aria-label="誕生日お祝いメッセージ動画"
+            aria-label="お祝いメッセージ動画"
             hidden
           ></video>
 
           <div id="video-placeholder" class="video-placeholder" hidden>
-            <div class="placeholder-scan" aria-hidden="true"></div>
             <p id="placeholder-title" class="placeholder-title">MESSAGE 01</p>
             <p class="placeholder-main">映像を準備中です</p>
-            <p class="placeholder-sub loading-blink">祝辞者情報を受信しています……</p>
+            <p class="placeholder-sub loading-blink">メッセージカードをご用意しています……</p>
             <button id="show-sender-button" class="button button-secondary placeholder-button" type="button">
-              祝辞者情報を見る
+              メッセージカードを見る
             </button>
           </div>
         </div>
@@ -156,84 +153,87 @@
 
         <div id="sender-check" class="sender-check" role="status" aria-live="polite" hidden>
           <span class="mini-spinner" aria-hidden="true"></span>
-          <p>祝辞者情報を照合しています……</p>
+          <p>メッセージカードを準備しています……</p>
         </div>
 
         <article id="sender-card" class="sender-card fade-in" hidden>
-          <div class="seal" aria-hidden="true"><span>該当者<br>なし</span></div>
-          <p class="card-kicker">IDENTITY VERIFICATION</p>
-          <h3 id="sender-card-title" tabindex="-1">身元照合結果</h3>
+          <p class="card-kicker">MESSAGE CARD</p>
+          <h3 id="sender-card-title" tabindex="-1">ゲストのご紹介</h3>
           <dl>
             <div>
-              <dt>祝辞者</dt>
+              <dt>お名前</dt>
               <dd id="sender-name"></dd>
             </div>
             <div>
-              <dt>本人との関係</dt>
+              <dt>テーマ</dt>
               <dd id="sender-relation"></dd>
             </div>
             <div>
-              <dt>照合結果</dt>
+              <dt>ひとこと</dt>
               <dd id="sender-status"></dd>
             </div>
           </dl>
-          <p class="card-foot"><span>照合機関</span><span class="mono">IBCO / K27</span></p>
-          <button id="next-button" class="button button-primary" type="button">次のメッセージ</button>
+          <p class="card-foot"><span>ケイスケ生誕祭</span><span class="mono">2026</span></p>
+          <button id="next-button" class="button button-primary" type="button">次のメッセージへ</button>
         </article>
 
-        <div class="progress-status" aria-label="中継進捗">
-          <p><span>中継済み</span><strong id="watched-count">0 / 10</strong></p>
-          <p><span>祝辞者数</span><strong id="people-count">0人</strong></p>
-          <p><span>確認できた知人</span><strong>0人</strong></p>
+        <div class="progress-status" aria-label="お祝いの進捗">
+          <p><span>再生済み</span><strong id="watched-count">0 / 10</strong></p>
+          <p><span>お祝い人数</span><strong id="people-count">0人</strong></p>
         </div>
       </section>
 
-      <!-- ======================= 回線切替 ======================= -->
+      <!-- ======================= 幕間 ======================= -->
       <section id="screen-transition" class="screen screen-centered transition-screen" data-screen="transition" hidden>
-        <p class="eyebrow">SIGNAL HANDOVER</p>
+        <p class="eyebrow">NEXT MESSAGE</p>
         <div id="transition-copy" class="transition-copy" role="status" aria-live="polite"></div>
         <div class="transfer-track" aria-hidden="true"><span></span></div>
       </section>
 
-      <!-- ======================= 集計結果 ======================= -->
+      <!-- ======================= 全通お届け完了 ======================= -->
       <section id="screen-results" class="screen screen-centered results-screen" data-screen="results" hidden>
-        <p class="eyebrow">BROADCAST COMPLETE</p>
-        <h2 id="results-title" tabindex="-1">すべての祝辞を<br>中継しました</h2>
+        <p class="eyebrow">ALL MESSAGES DELIVERED</p>
+        <h2 id="results-title" tabindex="-1">10通のメッセージが<br>すべて届きました</h2>
 
         <div id="result-details" class="result-details fade-in" hidden>
           <div class="result-grid">
-            <p><span>祝辞者総数</span><strong>27名</strong></p>
-            <p><span>本人の知人</span><strong>0名</strong></p>
-            <p><span>本人を正しく認識していた者</span><strong>0名</strong></p>
+            <p><span>お祝いメッセージ</span><strong>10通</strong></p>
+            <p><span>お祝いしてくれた人</span><strong>27名</strong></p>
+            <p><span>特別なメッセージ</span><strong>あと1通</strong></p>
           </div>
+          <p class="result-note">最後に、とっておきのメッセージが届いています。</p>
           <button id="search-friend-button" class="button button-primary" type="button">
-            知っている人からのメッセージを見る
+            最後のメッセージを見る
           </button>
           <button class="button button-text restart-button" type="button">最初からもう一度見る</button>
         </div>
 
-        <p id="result-wait" class="loading-blink" role="status">最終集計を実施しています……</p>
+        <p id="result-wait" class="loading-blink" role="status">メッセージを整理しています……</p>
       </section>
 
-      <!-- ======================= 知人検索 ======================= -->
+      <!-- ======================= 最後のメッセージ準備 ======================= -->
       <section id="screen-search" class="screen screen-centered" data-screen="search" hidden>
-        <div class="radar" aria-hidden="true"><span></span><i></i></div>
-        <p class="eyebrow">CONTACT DATABASE SEARCH</p>
+        <svg class="envelope-mark" viewBox="0 0 96 72" role="img" aria-label="特別なメッセージ" fill="none" stroke="currentColor">
+          <rect x="6" y="10" width="84" height="56" rx="5" stroke-width="1.4"></rect>
+          <path d="M 8,14 48,44 88,14" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path>
+          <circle cx="48" cy="44" r="9" stroke-width="1.2" fill="currentColor" fill-opacity="0.12"></circle>
+          <text x="48" y="48.5" text-anchor="middle" stroke="none" fill="currentColor">祝</text>
+        </svg>
+        <p class="eyebrow">ONE MORE MESSAGE</p>
         <p id="search-message" class="sequence-message loading-blink" role="status" aria-live="polite">
-          知人データベースを検索しています……
+          とっておきのメッセージを準備しています……
         </p>
       </section>
 
-      <!-- ======================= 最終祝辞 ======================= -->
+      <!-- ======================= 最終メッセージ ======================= -->
       <section id="screen-final" class="screen final-screen" data-screen="final" hidden>
-        <div class="dawn" aria-hidden="true"></div>
         <div class="confetti" aria-hidden="true">
           <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
           <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
         </div>
 
         <header class="final-header">
-          <p class="eyebrow">ONE LAST MESSAGE</p>
+          <p class="eyebrow">A SPECIAL MESSAGE</p>
           <h2 id="final-title" tabindex="-1">FINAL MESSAGE</h2>
         </header>
 
@@ -244,14 +244,13 @@
             controls
             playsinline
             preload="metadata"
-            aria-label="最後の誕生日お祝いメッセージ動画"
+            aria-label="最後のお祝いメッセージ動画"
             hidden
           ></video>
           <div id="final-video-loading" class="video-placeholder">
-            <div class="placeholder-scan" aria-hidden="true"></div>
             <p class="placeholder-title">FINAL MESSAGE</p>
             <p class="placeholder-main">映像を準備中です</p>
-            <p class="placeholder-sub loading-blink">最後の祝辞を受信しています……</p>
+            <p class="placeholder-sub loading-blink">最後のメッセージを受信しています……</p>
           </div>
         </div>
 
