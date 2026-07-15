@@ -1,5 +1,10 @@
 "use strict";
 
+const faithStylesheet = document.createElement("link");
+faithStylesheet.rel = "stylesheet";
+faithStylesheet.href = "keisuke-faith.css";
+document.head.append(faithStylesheet);
+
 const memberDialogs = document.querySelectorAll(".member-dialog");
 const currentDateLabels = document.querySelectorAll("[data-current-date]");
 
