@@ -146,16 +146,18 @@ function clearTimers() {
 }
 
 // 中継の進み具合に応じた表示段階を返します。見た目だけをCSS側で切り替えるための値です。
-function getPhase(screenName) {
+function getPhase(screenName, currentIndex) {
   if (screenName === "opening" || screenName === "connecting") {
     return "calm";
   }
 
-  if (state.currentIndex >= 7) {
+  const phaseIndex = screenName === "transition" ? currentIndex + 1 : currentIndex;
+
+  if (phaseIndex >= 7) {
     return "alert";
   }
 
-  if (state.currentIndex >= 4) {
+  if (phaseIndex >= 4) {
     return "caution";
   }
 
@@ -170,7 +172,7 @@ function showScreen(screenName) {
     screen.classList.toggle("fade-in", shouldShow);
   });
   state.screen = screenName;
-  app.dataset.phase = getPhase(screenName);
+  app.dataset.phase = getPhase(screenName, state.currentIndex);
   window.scrollTo(0, 0);
 }
 
