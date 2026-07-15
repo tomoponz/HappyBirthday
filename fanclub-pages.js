@@ -61,9 +61,25 @@ function createLegendsSection() {
   return section;
 }
 
-const embeddedLegends = document.querySelector("#keisuke-faith-dialog .faith-legends");
-if (embeddedLegends) {
-  embeddedLegends.remove();
+const faithDialog = document.querySelector("#keisuke-faith-dialog");
+faithDialog?.querySelector(".faith-facts")?.remove();
+faithDialog?.querySelector(".faith-doctrine")?.remove();
+faithDialog?.querySelector(".faith-legends")?.remove();
+
+const douseiButton = document.querySelector('[data-dialog-target="keisuke-dousei-dialog"]');
+if (douseiButton) {
+  const label = douseiButton.querySelector("span");
+  const title = douseiButton.querySelector("strong");
+  if (label) label.textContent = "MEMBERS ONLY ARTICLE";
+  if (title) title.textContent = "【会員限定】ケイスケ動静";
+}
+
+const douseiSheet = document.querySelector("#keisuke-dousei-dialog .dousei-sheet");
+if (douseiSheet && !douseiSheet.querySelector(".dousei-members-only")) {
+  const badge = document.createElement("div");
+  badge.className = "store-status dousei-members-only";
+  badge.textContent = "ファンクラブ会員限定";
+  douseiSheet.querySelector(".member-dialog-header")?.insertAdjacentElement("afterend", badge);
 }
 
 const fanclubAd = document.querySelector(".fanclub-ad");
