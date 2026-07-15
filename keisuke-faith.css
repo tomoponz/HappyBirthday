@@ -1,0 +1,171 @@
+.fanclub-actions {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.faith-hero {
+  display: grid;
+  margin-top: 28px;
+  grid-template-columns: minmax(260px, 0.9fr) minmax(0, 1.1fr);
+  border-top: 1px solid var(--ink);
+  border-bottom: 1px solid var(--ink);
+}
+
+.faith-emblem {
+  display: grid;
+  min-height: 480px;
+  margin: 0;
+  padding: clamp(22px, 4vw, 44px);
+  overflow: hidden;
+  background: #030303;
+  place-items: center;
+}
+
+.faith-emblem img {
+  display: block;
+  width: min(100%, 430px);
+  height: auto;
+  aspect-ratio: 1;
+  object-fit: contain;
+}
+
+.faith-copy {
+  padding: clamp(28px, 5vw, 52px);
+  border-left: 1px solid var(--ink);
+}
+
+.faith-label {
+  margin: 0;
+  color: var(--accent);
+  font-family: Arial, sans-serif;
+  font-size: 0.66rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+}
+
+.faith-copy h3 {
+  margin: 16px 0 0;
+  font-size: clamp(2.35rem, 5vw, 4.8rem);
+  font-weight: 900;
+  letter-spacing: -0.06em;
+  line-height: 1.04;
+}
+
+.faith-copy > p:not(.faith-label) {
+  margin: 26px 0 0;
+  color: var(--subtle);
+  font-size: 0.92rem;
+  line-height: 1.9;
+}
+
+.faith-facts {
+  margin: 30px 0 0;
+  border-top: 1px solid var(--ink);
+}
+
+.faith-facts div {
+  display: grid;
+  padding: 11px 0;
+  grid-template-columns: 120px minmax(0, 1fr);
+  border-bottom: 1px solid var(--line);
+  gap: 18px;
+}
+
+.faith-facts dt,
+.faith-facts dd {
+  font-size: 0.75rem;
+  line-height: 1.55;
+}
+
+.faith-facts dt {
+  font-weight: 800;
+}
+
+.faith-facts dd {
+  margin: 0;
+}
+
+.faith-doctrine {
+  padding: clamp(34px, 5vw, 58px) 0 8px;
+}
+
+.faith-doctrine > p {
+  margin: 0;
+  color: var(--accent);
+  font-family: Arial, sans-serif;
+  font-size: 0.66rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+}
+
+.faith-doctrine h3 {
+  margin: 10px 0 24px;
+  font-size: clamp(2rem, 5vw, 3.8rem);
+  font-weight: 900;
+  letter-spacing: -0.05em;
+}
+
+.faith-doctrine ol {
+  margin: 0;
+  padding: 0;
+  border-top: 3px solid var(--ink);
+  list-style: none;
+}
+
+.faith-doctrine li {
+  display: grid;
+  min-height: 76px;
+  padding: 17px 0;
+  grid-template-columns: 58px minmax(0, 1fr);
+  border-bottom: 1px solid var(--line);
+  align-items: center;
+  gap: 18px;
+  font-size: clamp(0.95rem, 2vw, 1.15rem);
+  font-weight: 700;
+  line-height: 1.65;
+}
+
+.faith-doctrine li span {
+  display: grid;
+  width: 44px;
+  height: 44px;
+  background: var(--ink);
+  color: var(--paper);
+  font-family: serif;
+  font-size: 1.15rem;
+  font-weight: 800;
+  place-items: center;
+}
+
+@media (max-width: 700px) {
+  .fanclub-actions {
+    grid-template-columns: 1fr;
+  }
+
+  .faith-hero {
+    grid-template-columns: 1fr;
+  }
+
+  .faith-emblem {
+    min-height: 300px;
+    padding: 20px;
+  }
+
+  .faith-copy {
+    border-top: 1px solid var(--ink);
+    border-left: 0;
+  }
+
+  .faith-facts div {
+    grid-template-columns: 100px minmax(0, 1fr);
+  }
+
+  .faith-doctrine li {
+    grid-template-columns: 48px minmax(0, 1fr);
+    gap: 12px;
+  }
+
+  .faith-doctrine li span {
+    width: 38px;
+    height: 38px;
+  }
+}
