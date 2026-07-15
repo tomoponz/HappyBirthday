@@ -1,0 +1,256 @@
+/* 動画の合間に差し込む誌面ネタ。既存の白・黒・赤の編集デザインに合わせる。 */
+.interstitial {
+  width: min(100% - 40px, var(--max));
+  margin: 0 auto;
+  border-bottom: 1px solid var(--line);
+}
+
+.fanclub-ad {
+  display: grid;
+  min-height: 520px;
+  padding: clamp(42px, 7vw, 82px) 0;
+  grid-template-columns: minmax(220px, 0.82fr) minmax(0, 1.18fr);
+  gap: clamp(30px, 6vw, 86px);
+  align-items: stretch;
+}
+
+.fanclub-visual {
+  position: relative;
+  min-height: 390px;
+  overflow: hidden;
+  background: #111;
+  color: var(--paper);
+}
+
+.fanclub-visual::before {
+  position: absolute;
+  top: -0.15em;
+  left: -0.08em;
+  content: "I";
+  font-family: Arial, sans-serif;
+  font-size: clamp(20rem, 43vw, 34rem);
+  font-weight: 900;
+  letter-spacing: -0.14em;
+  line-height: 1;
+  opacity: 0.94;
+}
+
+.fanclub-visual::after {
+  position: absolute;
+  right: 18px;
+  bottom: 18px;
+  width: 66px;
+  height: 10px;
+  background: var(--accent);
+  content: "";
+}
+
+.fanclub-visual span {
+  position: absolute;
+  z-index: 1;
+  top: 22px;
+  right: 20px;
+  writing-mode: vertical-rl;
+  font-family: Arial, sans-serif;
+  font-size: 0.66rem;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+}
+
+.fanclub-copy {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.fanclub-kicker,
+.premium-kicker {
+  margin: 0;
+  color: var(--accent);
+  font-family: Arial, sans-serif;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+}
+
+.fanclub-copy h2 {
+  margin: 18px 0 0;
+  font-family: Arial, sans-serif;
+  font-size: clamp(3rem, 8vw, 6.8rem);
+  font-weight: 900;
+  letter-spacing: -0.075em;
+  line-height: 0.82;
+}
+
+.fanclub-copy h2 span {
+  display: block;
+  color: var(--accent);
+  font-size: 0.34em;
+  letter-spacing: 0.02em;
+  line-height: 1.15;
+}
+
+.fanclub-lead {
+  max-width: 540px;
+  margin: 34px 0 0;
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  font-weight: 700;
+  line-height: 1.8;
+}
+
+.fanclub-benefits {
+  display: grid;
+  margin: 36px 0 0;
+  padding: 0;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  border-top: 1px solid var(--ink);
+  list-style: none;
+}
+
+.fanclub-benefits li {
+  min-height: 72px;
+  padding: 14px 12px 13px 0;
+  border-bottom: 1px solid var(--line);
+  font-size: 0.82rem;
+  line-height: 1.55;
+}
+
+.fanclub-benefits li:nth-child(even) {
+  padding-left: 16px;
+  border-left: 1px solid var(--ink);
+}
+
+.fanclub-note {
+  margin: 26px 0 0;
+  color: var(--subtle);
+  font-size: 0.68rem;
+  line-height: 1.7;
+}
+
+.premium-teaser {
+  padding: clamp(52px, 8vw, 92px) 0;
+}
+
+.premium-band {
+  display: flex;
+  min-height: 50px;
+  padding: 10px 16px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  background: var(--accent);
+  color: #fff;
+  font-family: Arial, sans-serif;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.13em;
+}
+
+.premium-band strong {
+  font-size: 0.76rem;
+}
+
+.premium-heading {
+  display: grid;
+  padding: 30px 0 22px;
+  grid-template-columns: 170px 1fr;
+  border-bottom: 1px solid var(--ink);
+  align-items: end;
+}
+
+.premium-heading h2 {
+  margin: 0;
+  font-size: clamp(1.8rem, 4.5vw, 3.7rem);
+  font-weight: 900;
+  letter-spacing: -0.045em;
+}
+
+.premium-preview {
+  position: relative;
+  display: grid;
+  padding: 26px 0 20px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  overflow: hidden;
+}
+
+.premium-preview::after {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  background: rgba(244, 241, 234, 0.32);
+  color: var(--ink);
+  content: "PREMIUM MEMBERS ONLY";
+  font-family: Arial, sans-serif;
+  font-size: clamp(0.8rem, 2vw, 1.1rem);
+  font-weight: 900;
+  letter-spacing: 0.14em;
+  place-items: center;
+  pointer-events: none;
+}
+
+.premium-card {
+  min-height: 160px;
+  padding: 18px;
+  border: 1px solid var(--ink);
+  background: #dedbd4;
+  filter: blur(9px);
+  user-select: none;
+}
+
+.premium-card b {
+  display: block;
+  margin-bottom: 20px;
+  font-size: 1rem;
+}
+
+.premium-card p {
+  margin: 0;
+  font-size: 0.78rem;
+  line-height: 1.7;
+}
+
+.premium-note {
+  margin: 8px 0 0;
+  color: var(--subtle);
+  font-size: 0.72rem;
+  line-height: 1.7;
+  text-align: right;
+}
+
+@media (max-width: 700px) {
+  .interstitial {
+    width: min(100% - 32px, var(--max));
+  }
+
+  .fanclub-ad {
+    min-height: auto;
+    grid-template-columns: 1fr;
+  }
+
+  .fanclub-visual {
+    min-height: 340px;
+  }
+
+  .fanclub-benefits {
+    grid-template-columns: 1fr;
+  }
+
+  .fanclub-benefits li:nth-child(even) {
+    padding-left: 0;
+    border-left: 0;
+  }
+
+  .premium-heading {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .premium-preview {
+    grid-template-columns: 1fr;
+  }
+
+  .premium-card {
+    min-height: 100px;
+  }
+}
