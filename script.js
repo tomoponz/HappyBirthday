@@ -47,6 +47,8 @@ const messages = [
 
 const messageList = document.querySelector("#message-list");
 const template = document.querySelector("#message-template");
+const fanclubTemplate = document.querySelector("#fanclub-template");
+const premiumTemplate = document.querySelector("#premium-template");
 const progressLabel = document.querySelector("#progress-label");
 const finale = document.querySelector("#finale");
 const musicButton = document.querySelector("#music-button");
@@ -104,6 +106,14 @@ function applyVideoOrientation(video, item) {
   item.classList.toggle("is-portrait", video.videoHeight > video.videoWidth);
 }
 
+function appendInterstitial(templateElement) {
+  if (!templateElement) {
+    return;
+  }
+
+  messageList.append(templateElement.content.cloneNode(true));
+}
+
 messages.forEach((message, index) => {
   const fragment = template.content.cloneNode(true);
   const item = fragment.querySelector(".message-item");
@@ -144,6 +154,14 @@ messages.forEach((message, index) => {
   });
 
   messageList.append(fragment);
+
+  if (index === 2) {
+    appendInterstitial(fanclubTemplate);
+  }
+
+  if (index === 4) {
+    appendInterstitial(premiumTemplate);
+  }
 });
 
 musicButton.addEventListener("click", () => {
