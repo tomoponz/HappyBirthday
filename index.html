@@ -3,147 +3,79 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-    <meta name="theme-color" content="#fdfaf3">
-    <meta name="description" content="ケイスケさんの誕生日を祝う、期間限定のお祝いメッセージ特設サイトです。">
-    <title>ケイスケ生誕祭 2026｜HAPPY BIRTHDAY SPECIAL</title>
+    <meta name="theme-color" content="#f4f1ea">
+    <meta name="description" content="ケイスケの誕生日を祝う、7本のお祝い動画をまとめた特設ページです。">
+    <title>KEISUKE 2026｜Birthday Special</title>
     <link rel="icon" href="data:,">
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="video-layout.css">
     <script src="script.js" defer></script>
-    <script src="runtime-patch.js" defer></script>
   </head>
   <body>
-    <main id="app" class="app-shell">
-      <div class="ambient ambient-top" aria-hidden="true"></div>
-      <div class="ambient ambient-bottom" aria-hidden="true"></div>
+    <header class="site-header">
+      <a class="site-mark" href="#top" aria-label="ページ先頭へ">
+        <span>KEISUKE</span>
+        <strong>2026</strong>
+      </a>
+      <p id="progress-label" class="watch-progress" aria-live="polite">0 / 7 WATCHED</p>
+    </header>
 
-      <section id="screen-opening" class="screen screen-opening fade-in" data-screen="opening">
-        <div class="org-bar">
-          <span class="org-mark" aria-hidden="true"></span>
-          <span class="org-text">
-            <b>ケイスケ生誕祭 実行委員会</b>
-            <i>KEISUKE BIRTHDAY CELEBRATION 2026</i>
-          </span>
+    <main id="top">
+      <section class="hero" aria-labelledby="page-title">
+        <p class="hero-date">2026. BIRTHDAY SPECIAL</p>
+        <h1 id="page-title">
+          <span>HAPPY</span>
+          <span>BIRTHDAY</span>
+          <em>KEISU</em>
+        </h1>
+        <div class="hero-copy">
+          <p>7人から、お祝いの映像が届きました。</p>
+          <p>上から順に見ても、気になるものから見ても大丈夫です。</p>
         </div>
-
-        <div class="opening-copy">
-          <svg class="crest" viewBox="0 0 200 200" role="img" aria-label="ケイスケ生誕祭 記章">
-            <circle cx="100" cy="100" r="92" fill="none" stroke="currentColor"></circle>
-            <circle cx="100" cy="100" r="72" fill="none" stroke="currentColor" opacity="0.45"></circle>
-            <text class="crest-kanji" x="100" y="100" text-anchor="middle" dominant-baseline="central" fill="currentColor">祝</text>
-            <text class="crest-year" x="100" y="145" text-anchor="middle" fill="currentColor">2026</text>
-          </svg>
-          <p class="eyebrow">HAPPY BIRTHDAY SPECIAL</p>
-          <h1 class="hero-title">HAPPY<br>BIRTHDAY</h1>
-          <div class="ornament" aria-hidden="true"><span></span><i></i><span></span></div>
-          <p class="recipient"><span data-birthday-person></span>さんへ</p>
-          <p class="lead">今日は<span data-birthday-person></span>さんの誕生日。<br>各地からお祝いメッセージが届きました。</p>
-        </div>
-
-        <dl class="edition-card">
-          <div><dt>お祝いメッセージ</dt><dd>全7通</dd></div>
-          <div><dt>本日の主役</dt><dd class="star"><span data-birthday-person></span>さん</dd></div>
-          <div><dt>公開</dt><dd>期間限定</dd></div>
-        </dl>
-
-        <div class="opening-actions">
-          <button id="start-button" class="button button-primary" type="button">お祝いメッセージを見る</button>
-          <p class="sound-note">音声をオンにしてご覧ください（BGMが流れます）</p>
-        </div>
+        <a class="jump-link" href="#messages">動画を見る <span aria-hidden="true">↓</span></a>
       </section>
 
-      <section id="screen-connecting" class="screen screen-centered" data-screen="connecting" hidden>
-        <div class="connection-mark" aria-hidden="true"><span></span></div>
-        <p class="eyebrow">BIRTHDAY MESSAGES</p>
-        <p id="connection-message" class="sequence-message loading-blink" role="status" aria-live="polite">会場の準備をしています……</p>
-        <div class="signal-lines" aria-hidden="true"><i></i><i></i><i></i></div>
+      <section id="messages" class="messages" aria-labelledby="messages-title">
+        <div class="section-heading">
+          <p>MESSAGES</p>
+          <h2 id="messages-title">お祝い動画</h2>
+        </div>
+        <div id="message-list" class="message-list"></div>
       </section>
 
-      <section id="screen-player" class="screen screen-player" data-screen="player" hidden>
-        <header class="player-header">
-          <div class="broadcast-bar">
-            <span class="live-badge"><i aria-hidden="true"></i>お祝い上映中</span>
-            <span class="channel-tag mono" aria-hidden="true">2026</span>
-            <p id="message-counter" class="message-counter" aria-label="1件目、全7件">01 / 07</p>
-          </div>
-          <div class="title-row">
-            <p class="eyebrow">お祝いメッセージ</p>
-            <h2 id="message-title" class="message-title" tabindex="-1">MESSAGE 01</h2>
-          </div>
-        </header>
-
-        <div id="message-media-frame" class="media-frame">
-          <video id="message-video" class="message-video" controls playsinline preload="metadata" aria-label="お祝いメッセージ動画" hidden></video>
-          <div id="video-placeholder" class="video-placeholder" hidden>
-            <p id="placeholder-title" class="placeholder-title">MESSAGE 01</p>
-            <p class="placeholder-main">映像を準備中です</p>
-            <p class="placeholder-sub loading-blink">メッセージカードをご用意しています……</p>
-            <button id="show-sender-button" class="button button-secondary placeholder-button" type="button">メッセージカードを見る</button>
-          </div>
+      <section id="finale" class="finale" aria-labelledby="finale-title" hidden>
+        <p class="finale-label">ALL MESSAGES WATCHED</p>
+        <h2 id="finale-title">誕生日おめでとう。</h2>
+        <p class="finale-copy">今年もいい一年になりますように。<br>最後まで見てくれてありがとう。</p>
+        <div class="finale-actions">
+          <button id="music-button" class="text-button" type="button" hidden>音楽を再生する</button>
+          <button id="restart-button" class="text-button" type="button">最初から見る</button>
         </div>
-
-        <p id="playback-guidance" class="playback-guidance" role="status" aria-live="polite" hidden>自動再生できない場合は、再生ボタンを押してください</p>
-
-        <div id="sender-check" class="sender-check" role="status" aria-live="polite" hidden>
-          <span class="mini-spinner" aria-hidden="true"></span>
-          <p>メッセージカードを準備しています……</p>
-        </div>
-
-        <article id="sender-card" class="sender-card fade-in" hidden>
-          <p class="card-kicker">MESSAGE CARD</p>
-          <h3 id="sender-card-title" tabindex="-1">ゲストのご紹介</h3>
-          <dl>
-            <div><dt>お名前</dt><dd id="sender-name"></dd></div>
-            <div><dt>テーマ</dt><dd id="sender-relation"></dd></div>
-            <div><dt>ひとこと</dt><dd id="sender-status"></dd></div>
-          </dl>
-          <p class="card-foot"><span>ケイスケ生誕祭</span><span class="mono">2026</span></p>
-          <button id="next-button" class="button button-primary" type="button">次のメッセージへ</button>
-        </article>
-
-        <div class="progress-status" aria-label="お祝いの進捗">
-          <p><span>再生済み</span><strong id="watched-count">0 / 7</strong></p>
-          <p><span>お祝い人数</span><strong id="people-count">0人</strong></p>
-        </div>
-      </section>
-
-      <section id="screen-transition" class="screen screen-centered transition-screen" data-screen="transition" hidden>
-        <p class="eyebrow">NEXT MESSAGE</p>
-        <div id="transition-copy" class="transition-copy" role="status" aria-live="polite"></div>
-        <div class="transfer-track" aria-hidden="true"><span></span></div>
-      </section>
-
-      <section id="screen-results" class="screen screen-centered results-screen" data-screen="results" hidden>
-        <p class="eyebrow">HAPPY BIRTHDAY</p>
-        <h2 id="results-title" tabindex="-1">7通のメッセージを<br>すべて見終わりました</h2>
-        <div id="result-details" class="result-details fade-in" hidden>
-          <div class="result-grid">
-            <p><span>お祝いメッセージ</span><strong>7通</strong></p>
-            <p><span>再生状況</span><strong>すべて再生</strong></p>
-            <p><span>本日の主役</span><strong>ケイスケ</strong></p>
-          </div>
-          <p class="result-note">ケイスケ、誕生日おめでとう！最後まで見てくれてありがとう。</p>
-          <button id="search-friend-button" class="button button-primary" type="button" hidden>最後のメッセージを見る</button>
-          <button class="button button-secondary restart-button" type="button">最初からもう一度見る</button>
-        </div>
-        <p id="result-wait" class="loading-blink" role="status">お祝いページを準備しています……</p>
-      </section>
-
-      <!-- 既存スクリプトの初期化互換用。補正スクリプト読込後に削除されます。 -->
-      <section id="screen-search" data-screen="search" hidden>
-        <p id="search-message">準備しています……</p>
-      </section>
-      <section id="screen-final" data-screen="final" hidden>
-        <h2 id="final-title" tabindex="-1">FINAL MESSAGE</h2>
-        <div id="final-media-frame">
-          <video id="final-video" hidden></video>
-          <div id="final-video-loading"></div>
-        </div>
-        <p id="final-playback-guidance" hidden></p>
-        <div id="final-fallback" hidden></div>
-        <div id="birthday-ending" hidden><button class="restart-button" type="button">最初から</button></div>
       </section>
     </main>
+
+    <template id="message-template">
+      <article class="message-item">
+        <header class="message-heading">
+          <p class="message-number"></p>
+          <div>
+            <h3 class="message-name"></h3>
+            <p class="message-theme"></p>
+          </div>
+          <p class="message-state" aria-live="polite">未視聴</p>
+        </header>
+
+        <div class="video-stage">
+          <video class="message-video" controls playsinline preload="metadata"></video>
+          <p class="video-error" hidden>動画を読み込めませんでした。</p>
+        </div>
+
+        <p class="message-comment"></p>
+      </article>
+    </template>
+
+    <footer class="site-footer">
+      <p>KEISUKE BIRTHDAY SPECIAL 2026</p>
+    </footer>
 
     <noscript>このサイトを表示するにはJavaScriptを有効にしてください。</noscript>
   </body>
