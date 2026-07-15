@@ -1,5 +1,10 @@
 "use strict";
 
+const anthemStylesheet = document.createElement("link");
+anthemStylesheet.rel = "stylesheet";
+anthemStylesheet.href = "anthem.css";
+document.head.append(anthemStylesheet);
+
 const messages = [
   {
     video: "さくらさん_8秒まで_0.9倍速.mp4",
@@ -57,14 +62,83 @@ const fanclubTemplate = document.querySelector("#fanclub-template");
 const premiumTemplate = document.querySelector("#premium-template");
 const progressLabel = document.querySelector("#progress-label");
 const finale = document.querySelector("#finale");
-const musicButton = document.querySelector("#music-button");
 const restartButton = document.querySelector("#restart-button");
 
+function createOpeningAnthem() {
+  const hero = document.querySelector(".hero");
+  const title = document.querySelector("#page-title");
+
+  if (!hero || !title) {
+    return null;
+  }
+
+  const section = document.createElement("section");
+  section.className = "opening-anthem";
+  section.setAttribute("aria-labelledby", "opening-anthem-title");
+
+  const copy = document.createElement("div");
+  copy.className = "opening-anthem-copy";
+
+  const kicker = document.createElement("p");
+  kicker.className = "opening-anthem-kicker";
+  kicker.textContent = "OPENING ANTHEM / KEISUKE 2026";
+
+  const heading = document.createElement("h2");
+  heading.id = "opening-anthem-title";
+  heading.textContent = "ケイスケをたたえる歌";
+
+  const description = document.createElement("p");
+  description.className = "opening-anthem-description";
+  description.textContent = "お祝い動画の前に、まずはこちらをお聴きください。";
+
+  copy.append(kicker, heading, description);
+
+  const player = document.createElement("div");
+  player.className = "opening-anthem-player";
+
+  const audio = document.createElement("audio");
+  audio.id = "keisuke-anthem";
+  audio.controls = true;
+  audio.preload = "metadata";
+  audio.src = "Keisuke.mp3";
+  audio.volume = 0.8;
+  audio.setAttribute("aria-label", "ケイスケをたたえる歌");
+
+  const status = document.createElement("p");
+  status.className = "opening-anthem-status";
+  status.setAttribute("aria-live", "polite");
+  status.textContent = "再生ボタンを押すと、ケイスケ讃歌が流れます。";
+
+  audio.addEventListener("play", () => {
+    status.textContent = "ケイスケ讃歌を再生中";
+    document.querySelectorAll(".message-video").forEach((video) => video.pause());
+  });
+
+  audio.addEventListener("pause", () => {
+    if (!audio.ended && audio.currentTime > 0) {
+      status.textContent = "ケイスケ讃歌を一時停止中";
+    }
+  });
+
+  audio.addEventListener("ended", () => {
+    status.textContent = "ケイスケ讃歌の再生が終了しました。";
+  });
+
+  audio.addEventListener("error", () => {
+    status.textContent = "音源を読み込めませんでした。ページを再読み込みしてください。";
+  });
+
+  player.append(audio, status);
+  section.append(copy, player);
+  title.insertAdjacentElement("afterend", section);
+
+  return audio;
+}
+
+const anthemAudio = createOpeningAnthem();
+document.querySelector("#music-button")?.remove();
+
 const watched = new Set();
-const music = new Audio("Keisuke.mp3");
-music.loop = true;
-music.preload = "auto";
-music.volume = 0.8;
 
 function updateProgress() {
   progressLabel.textContent = `${watched.size} / ${messages.length} WATCHED`;
@@ -74,23 +148,12 @@ function updateProgress() {
   }
 }
 
-function playFinaleMusic() {
-  music.currentTime = 0;
-  const result = music.play();
-  if (result && typeof result.catch === "function") {
-    result.catch(() => {
-      musicButton.hidden = false;
-    });
-  }
-}
-
 function showFinale() {
   if (!finale.hidden) {
     return;
   }
 
   finale.hidden = false;
-  playFinaleMusic();
 
   window.setTimeout(() => {
     finale.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -144,10 +207,7 @@ messages.forEach((message, index) => {
       if (otherVideo !== video) otherVideo.pause();
     });
 
-    if (!music.paused) {
-      music.pause();
-      musicButton.hidden = false;
-    }
+    anthemAudio?.pause();
   });
 
   video.addEventListener("ended", () => {
@@ -170,15 +230,9 @@ messages.forEach((message, index) => {
   }
 });
 
-musicButton.addEventListener("click", () => {
-  musicButton.hidden = true;
-  playFinaleMusic();
-});
-
 restartButton.addEventListener("click", () => {
-  music.pause();
-  music.currentTime = 0;
-  musicButton.hidden = true;
+  anthemAudio?.pause();
+  if (anthemAudio) anthemAudio.currentTime = 0;
   finale.hidden = true;
   watched.clear();
 
@@ -197,7 +251,7 @@ restartButton.addEventListener("click", () => {
 });
 
 window.addEventListener("pagehide", () => {
-  music.pause();
+  anthemAudio?.pause();
 });
 
 updateProgress();
