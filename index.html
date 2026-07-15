@@ -86,12 +86,22 @@
             <p class="fanclub-lead">ケイスケを応援する意思だけで入会できます。本人の了承は、現在確認中です。</p>
           </div>
           <ul class="fanclub-benefits" aria-label="入会特典">
+            <li>ケイスケ動静<br>会員限定記事を随時更新</li>
+            <li>特別販売所<br>会員だけの特別価格</li>
             <li>会員証<br>会員番号は全員 0001</li>
-            <li>ケイスケの誕生日を<br>堂々と祝う権利</li>
-            <li>年1回の<br>活動報告メール</li>
             <li>本人非公認<br>記念ステッカー</li>
           </ul>
-          <p class="fanclub-note">※入会金・年会費・活動内容は、まだ何も決まっていません。</p>
+          <div class="fanclub-actions" aria-label="会員限定ページ">
+            <button class="fanclub-action" type="button" data-dialog-target="keisuke-dousei-dialog">
+              <span>MEMBERS ARTICLE</span>
+              <strong>ケイスケ動静を読む</strong>
+            </button>
+            <button class="fanclub-action" type="button" data-dialog-target="cell-shop-dialog">
+              <span>MEMBERS STORE</span>
+              <strong>会員特別販売所を見る</strong>
+            </button>
+          </div>
+          <p class="fanclub-note">※会員番号の確認は行っていません。入会金・年会費・活動内容も、まだ何も決まっていません。</p>
         </div>
       </section>
     </template>
@@ -123,6 +133,68 @@
         <p class="premium-note">現在、プレミアム会員は募集していません。</p>
       </section>
     </template>
+
+    <dialog id="keisuke-dousei-dialog" class="member-dialog" aria-labelledby="dousei-title">
+      <article class="member-dialog-sheet dousei-sheet">
+        <header class="member-dialog-header">
+          <div>
+            <p>KEISUKE DAILY REPORT / MEMBERS ONLY</p>
+            <h2 id="dousei-title">ケイスケ動静</h2>
+          </div>
+          <button class="dialog-close" type="button" data-dialog-close aria-label="ケイスケ動静を閉じる">閉じる</button>
+        </header>
+        <p class="dousei-date"><span data-current-date></span>のケイスケ動静</p>
+        <dl class="dousei-timeline">
+          <div><dt>午前8時12分</dt><dd>起床した可能性が高い。</dd></div>
+          <div><dt>午前8時34分</dt><dd>自宅内を移動。</dd></div>
+          <div><dt>午前9時05分</dt><dd>冷蔵庫付近で姿を確認。</dd></div>
+          <div><dt>午前11時48分</dt><dd>関係者に「おなかすいた」と伝える。</dd></div>
+          <div><dt>午後0時26分</dt><dd>昼食。内容は明らかにされていない。</dd></div>
+          <div><dt>午後3時14分</dt><dd>スマートフォンを操作。</dd></div>
+          <div><dt>午後6時02分</dt><dd>所在不明。</dd></div>
+          <div><dt>午後8時41分</dt><dd>再びオンライン上に姿を現す。</dd></div>
+          <div><dt>午後11時09分</dt><dd>関係者との連絡を終え、私邸へ戻る。</dd></div>
+        </dl>
+        <p class="member-disclaimer">※公開情報、関係者の証言、および編集部の推測をもとに作成されています。</p>
+      </article>
+    </dialog>
+
+    <dialog id="cell-shop-dialog" class="member-dialog" aria-labelledby="cell-shop-title">
+      <article class="member-dialog-sheet store-sheet">
+        <header class="member-dialog-header">
+          <div>
+            <p>KEISUKE FAN CLUB / MEMBERS STORE</p>
+            <h2 id="cell-shop-title">会員特別販売所</h2>
+          </div>
+          <button class="dialog-close" type="button" data-dialog-close aria-label="会員特別販売所を閉じる">閉じる</button>
+        </header>
+        <div class="store-status">会員限定・数量未定</div>
+        <div class="cell-product">
+          <div class="cell-product-visual" aria-hidden="true">
+            <span>FRESH</span>
+            <strong>CELL</strong>
+            <small>KEISUKE SERIES</small>
+          </div>
+          <div class="cell-product-copy">
+            <p class="product-category">SPECIAL BIOLOGICAL ITEM</p>
+            <h3>ケイスケの新鮮な細胞</h3>
+            <p class="product-description">採取された可能性のある細胞を、当社独自基準の鮮度でお届けする予定でした。</p>
+            <div class="product-price">
+              <p><span>通常価格</span><s>49,800円</s></p>
+              <p class="member-price"><span>会員特別価格</span><strong>3,980円</strong></p>
+            </div>
+            <dl class="product-specs">
+              <div><dt>採取時期</dt><dd>非公開</dd></div>
+              <div><dt>保存方法</dt><dd>要相談</dd></div>
+              <div><dt>鮮度</dt><dd>当社基準</dd></div>
+              <div><dt>本人確認</dt><dd>現在実施中</dd></div>
+            </dl>
+            <button class="sold-out-button" type="button" disabled>現在在庫切れ</button>
+          </div>
+        </div>
+        <p class="member-disclaimer">※誕生日企画上の架空の商品です。本人由来であることを保証するものではなく、実際の販売・採取・発送は行いません。</p>
+      </article>
+    </dialog>
 
     <footer class="site-footer">
       <p>KEISUKE BIRTHDAY SPECIAL 2026</p>
