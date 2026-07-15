@@ -80,6 +80,7 @@ const messages = [
 // 各メッセージ完了時点でのお祝い人数です。
 const peopleCounts = [1, 2, 3, 4, 5, 6, 7, 13, 14, 27];
 
+const app = document.querySelector("#app");
 const screens = Array.from(document.querySelectorAll("[data-screen]"));
 const startButton = document.querySelector("#start-button");
 const connectionMessage = document.querySelector("#connection-message");
@@ -144,6 +145,25 @@ function clearTimers() {
   state.timers.clear();
 }
 
+// 中継の進み具合に応じた表示段階を返します。見た目だけをCSS側で切り替えるための値です。
+function getPhase(screenName, currentIndex) {
+  if (screenName === "opening" || screenName === "connecting") {
+    return "calm";
+  }
+
+  const phaseIndex = screenName === "transition" ? currentIndex + 1 : currentIndex;
+
+  if (phaseIndex >= 7) {
+    return "alert";
+  }
+
+  if (phaseIndex >= 4) {
+    return "caution";
+  }
+
+  return "calm";
+}
+
 // 非表示画面を切り替え、現在画面を状態として記録します。
 function showScreen(screenName) {
   screens.forEach((screen) => {
@@ -152,6 +172,7 @@ function showScreen(screenName) {
     screen.classList.toggle("fade-in", shouldShow);
   });
   state.screen = screenName;
+  app.dataset.phase = getPhase(screenName, state.currentIndex);
   window.scrollTo(0, 0);
 }
 
@@ -223,9 +244,9 @@ async function startExperience() {
   showScreen("connecting");
 
   const connectionSteps = [
-    "メッセージサーバーに接続しています……",
-    "送信者情報を照合しています……",
-    "10件のメッセージを確認しました"
+    "中継回線を確立しています……",
+    "祝辞者情報を照合しています……",
+    "10件の祝辞を受信しました"
   ];
 
   for (const step of connectionSteps) {
@@ -331,7 +352,7 @@ async function revealSenderInformation() {
 // 次に再生する番号に応じて、徐々に不穏になる読み込み文を返します。
 function getTransitionLines(nextIndex) {
   if (nextIndex === 9) {
-    return ["送信元：特定不能", "このメッセージは削除できません"];
+    return ["送信元：特定不能", "この中継は停止できません"];
   }
 
   if (nextIndex >= 7) {
@@ -339,10 +360,10 @@ function getTransitionLines(nextIndex) {
   }
 
   if (nextIndex >= 4) {
-    return ["送信者との関係を確認できませんでした", "再生を続行します"];
+    return ["祝辞者との関係を確認できませんでした", "中継を続行します"];
   }
 
-  return ["次のメッセージを読み込んでいます……"];
+  return ["次の祝辞へ回線を切り替えています……"];
 }
 
 // 送信者カードから次の動画、または全件結果へ進みます。
@@ -401,9 +422,9 @@ async function searchForFriendMessage() {
   showScreen("search");
 
   const searchSteps = [
-    "知人を検索しています……",
+    "知人データベースを検索しています……",
     "検索範囲を拡大しています……",
-    "1件見つかりました"
+    "1件該当しました"
   ];
 
   for (const step of searchSteps) {
@@ -476,8 +497,8 @@ function resetExperience() {
   state.completedCount = 0;
   state.messageResolved = false;
 
-  connectionMessage.textContent = "メッセージサーバーに接続しています……";
-  searchMessage.textContent = "知人を検索しています……";
+  connectionMessage.textContent = "中継回線を確立しています……";
+  searchMessage.textContent = "知人データベースを検索しています……";
   transitionCopy.replaceChildren();
   senderCard.hidden = true;
   senderCheck.hidden = true;
