@@ -1,0 +1,109 @@
+/* 動画の実寸比率に合わせて、横動画と縦動画で枠そのものを切り替える。 */
+.media-frame.is-landscape {
+  width: 100%;
+  height: auto !important;
+  aspect-ratio: 16 / 9;
+}
+
+.media-frame.is-portrait {
+  width: min(72vw, 340px);
+  height: auto !important;
+  aspect-ratio: 9 / 16;
+  margin-inline: auto;
+}
+
+.media-frame.is-placeholder {
+  width: 100%;
+  height: clamp(250px, 54dvh, 540px) !important;
+  aspect-ratio: auto;
+}
+
+.media-frame.is-portrait .message-video,
+.media-frame.is-landscape .message-video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* カード表示後も比率を崩さず、映像だけ適度に小さくする。 */
+.screen-player:has(#sender-check:not([hidden])) .media-frame.is-landscape,
+.screen-player:has(#sender-card:not([hidden])) .media-frame.is-landscape {
+  width: min(100%, 420px);
+  height: auto !important;
+  margin-inline: auto;
+  aspect-ratio: 16 / 9;
+}
+
+.screen-player:has(#sender-check:not([hidden])) .media-frame.is-portrait,
+.screen-player:has(#sender-card:not([hidden])) .media-frame.is-portrait {
+  width: min(43vw, 210px);
+  height: auto !important;
+  margin-inline: auto;
+  aspect-ratio: 9 / 16;
+}
+
+/* 全動画終了後は、通常の結果画面を祝福のフィナーレとして見せる。 */
+.all-messages-complete .results-screen {
+  background:
+    radial-gradient(circle at 20% 12%, rgba(255, 214, 224, 0.72), transparent 32%),
+    radial-gradient(circle at 82% 18%, rgba(247, 218, 146, 0.56), transparent 30%),
+    linear-gradient(180deg, #fffdf7 0%, #fff5e8 52%, #fce9df 100%);
+}
+
+.all-messages-complete .results-screen::before,
+.all-messages-complete .results-screen::after {
+  position: absolute;
+  z-index: -1;
+  width: 180px;
+  height: 180px;
+  border: 1px solid rgba(168, 132, 60, 0.16);
+  border-radius: 50%;
+  content: "";
+}
+
+.all-messages-complete .results-screen::before {
+  top: 8%;
+  left: -90px;
+}
+
+.all-messages-complete .results-screen::after {
+  right: -100px;
+  bottom: 6%;
+}
+
+.all-messages-complete .results-screen h2 {
+  color: var(--gold-deep);
+  text-shadow: 0 8px 30px rgba(168, 132, 60, 0.2);
+}
+
+.all-messages-complete .result-details {
+  padding: clamp(20px, 5vw, 30px);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.72);
+  box-shadow: var(--shadow-card);
+  backdrop-filter: blur(8px);
+}
+
+@media (max-width: 380px) {
+  .media-frame.is-portrait {
+    width: min(70vw, 270px);
+  }
+
+  .screen-player:has(#sender-check:not([hidden])) .media-frame.is-portrait,
+  .screen-player:has(#sender-card:not([hidden])) .media-frame.is-portrait {
+    width: min(45vw, 180px);
+  }
+}
+
+@media (max-height: 700px) and (orientation: portrait) {
+  .media-frame.is-portrait {
+    width: min(58vw, 280px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .media-frame {
+    transition: none !important;
+  }
+}
