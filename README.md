@@ -22,13 +22,13 @@ HappyBirthday/
 ├─ style.css
 ├─ script.js
 └─ videos/
-   ├─ 01_wrong_person.mp4
-   ├─ 02_debt.mp4
-   ├─ 03_benefactor.mp4
-   ├─ 04_rival.mp4
-   ├─ 05_apology.mp4
-   ├─ 06_business.mp4
-   ├─ 07_future.mp4
+   ├─ 01_sakura.mp4
+   ├─ 02_rice_farmer.mp4
+   ├─ 03_rival.mp4
+   ├─ 04_coerced.mp4
+   ├─ 05_future.mp4
+   ├─ 06_apology.mp4
+   ├─ 07_business.mp4
    ├─ 08_cult.mp4
    ├─ 09_wrong_name.mp4
    ├─ 10_knows_too_much.mp4
@@ -42,7 +42,7 @@ HappyBirthday/
 `script.js` 冒頭の次の1行だけを変更してください。
 
 ```javascript
-const birthdayPerson = "〇〇";
+const birthdayPerson = "ケイスケ";
 ```
 
 たとえば `const birthdayPerson = "太郎";` とすると、サイト内の対象箇所がすべて「太郎さん」になります。HTMLへ名前を直接追加する必要はありません。
@@ -53,11 +53,11 @@ const birthdayPerson = "〇〇";
 
 ```javascript
 {
-  video: "videos/01_wrong_person.mp4",
+  video: "videos/01_sakura.mp4",
   title: "MESSAGE 01",
-  sender: "高校時代の親友を名乗る男性",
-  relation: "該当する人物は確認できませんでした",
-  status: "人違いの可能性：98%"
+  sender: "さくらさん",
+  relation: "本人との関係は確認できませんでした",
+  status: "お祝いの意志：確認済み"
 }
 ```
 

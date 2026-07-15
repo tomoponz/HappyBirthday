@@ -1,58 +1,58 @@
 "use strict";
 
 // 友人の名前は、この定数だけを変更してください。
-const birthdayPerson = "〇〇";
+const birthdayPerson = "ケイスケ";
 
 // 動画・表示名・送信者情報を再生順に一元管理します。
 const messages = [
   {
-    video: "videos/01_wrong_person.mp4",
+    video: "videos/01_sakura.mp4",
     title: "MESSAGE 01",
-    sender: "高校時代の親友を名乗る男性",
-    relation: "該当する人物は確認できませんでした",
-    status: "人違いの可能性：98%"
+    sender: "さくらさん",
+    relation: "本人との関係は確認できませんでした",
+    status: "お祝いの意志：確認済み"
   },
   {
-    video: "videos/02_debt.mp4",
+    video: "videos/02_rice_farmer.mp4",
     title: "MESSAGE 02",
-    sender: "債権者を名乗る男性",
-    relation: "金銭上の関係を主張",
-    status: "未返済額：30,000円"
+    sender: "コメ農家の野口さん",
+    relation: "本人との接点なし",
+    status: "お米を食べて元気になれよー"
   },
   {
-    video: "videos/03_benefactor.mp4",
+    video: "videos/03_rival.mp4",
     title: "MESSAGE 03",
-    sender: "人生を救われたと主張する人物",
-    relation: "本人に心当たりなし",
-    status: "感謝レベル：測定不能"
-  },
-  {
-    video: "videos/04_rival.mp4",
-    title: "MESSAGE 04",
     sender: "自称・永遠のライバル",
     relation: "対戦履歴なし",
-    status: "本人だけが17戦目と主張"
+    status: "本人だけが因縁を主張"
   },
   {
-    video: "videos/05_apology.mp4",
+    video: "videos/04_coerced.mp4",
+    title: "MESSAGE 04",
+    sender: "緊張した様子の男性",
+    relation: "本人との接点なし",
+    status: "自発的な祝福か確認中"
+  },
+  {
+    video: "videos/05_future.mp4",
     title: "MESSAGE 05",
+    sender: "未来から来た男性",
+    relation: "時系列上、確認不能",
+    status: "未来から警告を受信"
+  },
+  {
+    video: "videos/06_apology.mp4",
+    title: "MESSAGE 06",
     sender: "昨年の件を謝罪する人物",
     relation: "謝罪対象となる事件は不明",
     status: "詳細：非公開"
   },
   {
-    video: "videos/06_business.mp4",
-    title: "MESSAGE 06",
+    video: "videos/07_business.mp4",
+    title: "MESSAGE 07",
     sender: "祝賀業務担当者",
     relation: "業務委託による祝福",
     status: "受付番号：BD-4721"
-  },
-  {
-    video: "videos/07_future.mp4",
-    title: "MESSAGE 07",
-    sender: "27年後の未来から来た男性",
-    relation: "時系列上、確認不能",
-    status: "赤い自動販売機に注意"
   },
   {
     video: "videos/08_cult.mp4",
