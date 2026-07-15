@@ -8,6 +8,7 @@
     <title>KEISUKE 2026｜Birthday Special</title>
     <link rel="icon" href="data:,">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="interstitials.css">
     <script src="script.js" defer></script>
   </head>
   <body>
@@ -71,6 +72,56 @@
 
         <p class="message-comment"></p>
       </article>
+    </template>
+
+    <template id="fanclub-template">
+      <section class="interstitial fanclub-ad" aria-labelledby="fanclub-title">
+        <div class="fanclub-visual" aria-hidden="true">
+          <span>IKENAGA OFFICIAL FAN CLUB</span>
+        </div>
+        <div class="fanclub-copy">
+          <div>
+            <p class="fanclub-kicker">ADVERTISEMENT / MEMBERS WANTED</p>
+            <h2 id="fanclub-title">IKENAGA<span>OFFICIAL FAN CLUB</span></h2>
+            <p class="fanclub-lead">ケイスケを応援する意思だけで入会できます。本人の了承は、現在確認中です。</p>
+          </div>
+          <ul class="fanclub-benefits" aria-label="入会特典">
+            <li>会員証<br>会員番号は全員 0001</li>
+            <li>ケイスケの誕生日を<br>堂々と祝う権利</li>
+            <li>年1回の<br>活動報告メール</li>
+            <li>本人非公認<br>記念ステッカー</li>
+          </ul>
+          <p class="fanclub-note">※入会金・年会費・活動内容は、まだ何も決まっていません。</p>
+        </div>
+      </section>
+    </template>
+
+    <template id="premium-template">
+      <section class="interstitial premium-teaser" aria-labelledby="premium-title">
+        <div class="premium-band">
+          <span>IKENAGA FAN CLUB</span>
+          <strong>PREMIUM</strong>
+        </div>
+        <div class="premium-heading">
+          <p class="premium-kicker">MEMBERS ONLY</p>
+          <h2 id="premium-title">一部コンテンツは会員限定です</h2>
+        </div>
+        <div class="premium-preview" aria-hidden="true">
+          <article class="premium-card">
+            <b>ケイスケの朝食予想</b>
+            <p>独自の調査により、朝食の内容を高精度で予測します。</p>
+          </article>
+          <article class="premium-card">
+            <b>未公開プロフィール</b>
+            <p>好きな信号機の色など、知らなくても困らない情報を掲載。</p>
+          </article>
+          <article class="premium-card">
+            <b>会員限定レポート</b>
+            <p>今月のケイスケについて、特に根拠なくまとめました。</p>
+          </article>
+        </div>
+        <p class="premium-note">現在、プレミアム会員は募集していません。</p>
+      </section>
     </template>
 
     <footer class="site-footer">
