@@ -8,37 +8,37 @@ document.head.append(anthemStylesheet);
 const messages = [
   {
     video: "さくらさん_8秒まで_0.9倍速.mp4",
-    name: "さくらさん",
+    name: "桜庭 さくら",
     theme: "はじめましての祝福",
     comment: "とびきりの笑顔で、お祝いを届けてくれました。"
   },
   {
     video: "コメ農家の野口さん.mp4",
-    name: "コメ農家の野口さん",
+    name: "野口 稔",
     theme: "実りへの願い",
     comment: "お米を食べて元気になれよー、とのことです。"
   },
   {
     video: "ライバル.mp4",
-    name: "永遠のライバルを名乗る方",
+    name: "黒崎 蓮司",
     theme: "宿命の再会",
     comment: "次に会う日を楽しみにしているそうです。"
   },
   {
     video: "脅迫.mp4",
-    name: "緊張気味のご様子の方",
+    name: "田所 誠一",
     theme: "心からのお祝い",
     comment: "言葉をひとつずつ、慎重に選んでくれました。"
   },
   {
     video: "未来から.mp4",
-    name: "未来から来たという方",
+    name: "時任 航平",
     theme: "27年後からの祝辞",
     comment: "未来のことは、まだ内緒だそうです。"
   },
   {
     video: "893.mp4",
-    name: "義理と人情に厚い方",
+    name: "堂島 龍一",
     theme: "漢気の祝福",
     comment: "今後とも変わらぬお付き合いを、とのことです。"
   },
@@ -50,7 +50,7 @@ const messages = [
   },
   {
     video: "クラブ.mp4",
-    name: "夜のお店の皆さん",
+    name: "CLUB LUMINOUS 御一同",
     theme: "華やかな祝福",
     comment: "来店歴については、関係者の間でも証言が分かれています。"
   }
