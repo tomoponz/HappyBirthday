@@ -53,8 +53,6 @@ const progressLabel = document.querySelector("#progress-label");
 const finale = document.querySelector("#finale");
 const musicButton = document.querySelector("#music-button");
 const restartButton = document.querySelector("#restart-button");
-const jumpLink = document.querySelector(".jump-link");
-const messagesSection = document.querySelector("#messages");
 
 const watched = new Set();
 const music = new Audio("Keisuke.mp3");
@@ -65,6 +63,7 @@ music.volume = 0.8;
 const startSound = new Audio("nc167325_ガシャット挿入音.wav");
 startSound.preload = "auto";
 startSound.volume = 0.85;
+let hasPlayedStartSound = false;
 
 function updateProgress() {
   progressLabel.textContent = `${watched.size} / ${messages.length} WATCHED`;
@@ -84,14 +83,19 @@ function playFinaleMusic() {
   }
 }
 
-function playStartSound() {
+function playStartSoundOnce() {
+  if (hasPlayedStartSound) {
+    return;
+  }
+
+  hasPlayedStartSound = true;
   startSound.pause();
   startSound.currentTime = 0;
   const result = startSound.play();
 
   if (result && typeof result.catch === "function") {
     result.catch(() => {
-      // 音声が拒否された場合も、そのまま動画一覧へ進みます。
+      // 音声が拒否されても、動画は通常どおり再生します。
     });
   }
 }
@@ -152,6 +156,8 @@ messages.forEach((message, index) => {
   });
 
   video.addEventListener("play", () => {
+    playStartSoundOnce();
+
     document.querySelectorAll(".message-video").forEach((otherVideo) => {
       if (otherVideo !== video) otherVideo.pause();
     });
@@ -182,19 +188,6 @@ messages.forEach((message, index) => {
   }
 });
 
-jumpLink.addEventListener("click", (event) => {
-  event.preventDefault();
-  playStartSound();
-
-  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  window.setTimeout(() => {
-    messagesSection.scrollIntoView({
-      behavior: prefersReducedMotion ? "auto" : "smooth",
-      block: "start"
-    });
-  }, 180);
-});
-
 musicButton.addEventListener("click", () => {
   musicButton.hidden = true;
   playFinaleMusic();
@@ -203,6 +196,9 @@ musicButton.addEventListener("click", () => {
 restartButton.addEventListener("click", () => {
   music.pause();
   music.currentTime = 0;
+  startSound.pause();
+  startSound.currentTime = 0;
+  hasPlayedStartSound = false;
   musicButton.hidden = true;
   finale.hidden = true;
   watched.clear();
