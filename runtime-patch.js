@@ -54,6 +54,26 @@ messages.splice(0, messages.length,
 );
 peopleCounts.splice(0, peopleCounts.length, 1, 2, 3, 4, 5, 6, 7);
 
+// 準備画面の件数も、実在する動画数へ合わせます。
+startExperience = async function patchedStartExperience() {
+  const generation = state.generation;
+  showScreen("connecting");
+
+  const connectionSteps = [
+    "会場の準備をしています……",
+    "お祝いメッセージを受け取っています……",
+    `${messages.length}通のメッセージが届きました`
+  ];
+
+  for (const step of connectionSteps) {
+    connectionMessage.textContent = step;
+    await delay(820);
+    if (generation !== state.generation) return;
+  }
+
+  showMessage(0);
+};
+
 document.querySelectorAll('[data-screen="search"], [data-screen="final"]').forEach((screen) => screen.remove());
 document.querySelector("#search-friend-button")?.remove();
 
